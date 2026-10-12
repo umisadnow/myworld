@@ -141,6 +141,769 @@
       .js .reveal { opacity: 1; transform: none; }
     }
   </style>
+
+  <!-- Sol 6.1 Instruments Stylesheet -->
+  <style id="sol-instruments-css">
+/* All component styles are scoped to .archive-instruments. */
+    .archive-instruments {
+      --paper: #eae0ca;
+      --ink: #26251e;
+      --brass: #b49a62;
+      --muted: #a69d87;
+      --line: rgba(183, 159, 106, .23);
+      color: var(--ink);
+      font-family: "Manrope", sans-serif;
+      background: transparent;
+      isolation: isolate;
+    }
+
+    .archive-instruments .exhibit-heading h2 {
+      color: var(--ink);
+    }
+
+    .archive-instruments *, .archive-instruments *::before,
+    .archive-instruments *::after { box-sizing: border-box; }
+
+    .archive-instruments button,
+    .archive-instruments input { font: inherit; }
+
+    .archive-instruments button { cursor: pointer; }
+    .archive-instruments button:disabled { cursor: not-allowed; opacity: .45; }
+    .archive-instruments :focus-visible {
+      outline: 2px solid #dbbf80;
+      outline-offset: 5px;
+    }
+
+    .archive-instruments .serif { font-family: "EB Garamond", serif; }
+    .archive-instruments .eyebrow {
+      font-size: 10px;
+      line-height: 1.7;
+      letter-spacing: .23em;
+      text-transform: uppercase;
+      color: var(--brass);
+    }
+
+    .archive-instruments .archive-shell {
+      max-width: 1280px;
+      margin: auto;
+      padding: clamp(24px, 5vw, 72px);
+    }
+
+    .archive-instruments .archive-header {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      padding-bottom: 34px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 48px;
+    }
+
+    .archive-instruments h1,
+    .archive-instruments h2,
+    .archive-instruments p { margin: 0; }
+
+    .archive-instruments h1 {
+      font-size: clamp(42px, 6vw, 76px);
+      font-weight: 400;
+      line-height: 1.05;
+    }
+
+    .archive-instruments .intro {
+      max-width: 285px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.9;
+    }
+
+    .archive-instruments .collection {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 34px;
+    }
+
+    .archive-instruments .exhibit { min-width: 0; }
+    .archive-instruments .exhibit-wide { grid-column: 1 / -1; }
+
+    .archive-instruments .exhibit-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 17px;
+    }
+
+    .archive-instruments .exhibit-heading h2 {
+      font-size: 27px;
+      font-weight: 400;
+      line-height: 1.2;
+      margin-top: 5px;
+    }
+
+    .archive-instruments .catalog-number {
+      font: italic 19px "EB Garamond", serif;
+      color: var(--brass);
+      white-space: nowrap;
+    }
+
+    .archive-instruments .instrument {
+      position: relative;
+      border: 1px solid #554933;
+      border-radius: 9px;
+      box-shadow: 0 18px 45px #0004, inset 0 1px #eed59a17;
+      overflow: hidden;
+    }
+
+    .archive-instruments .bronze {
+      background:
+        repeating-linear-gradient(0deg, transparent 0 2px, #ffffff03 2px 3px),
+        linear-gradient(115deg, #302c23, #1d1d18 50%, #29261e);
+    }
+
+    .archive-instruments .screw {
+      position: absolute;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #8c7c58, #342f23);
+      box-shadow: inset 0 0 0 1px #0008, 0 1px #ffffff12;
+      z-index: 3;
+    }
+
+    .archive-instruments .screw::after {
+      content: "";
+      position: absolute;
+      inset: 4px 2px;
+      background: #171510;
+      transform: rotate(-30deg);
+    }
+
+    .archive-instruments .screw.tl { top: 13px; left: 13px; }
+    .archive-instruments .screw.tr { top: 13px; right: 13px; }
+    .archive-instruments .screw.bl { bottom: 13px; left: 13px; }
+    .archive-instruments .screw.br { bottom: 13px; right: 13px; }
+
+    .archive-instruments .plate {
+      text-align: center;
+      color: #baaa85;
+      font-size: 9px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+    }
+
+    .archive-instruments .status {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      color: #b4ac98;
+      font-size: 10px;
+      line-height: 1.6;
+    }
+
+    .archive-instruments .status-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #aa8c53;
+      box-shadow: 0 0 8px #d6a65565;
+      flex: none;
+    }
+
+    .archive-instruments .note {
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-top: 13px;
+    }
+
+    .archive-instruments .icon { width: 15px; height: 15px; flex: none; }
+
+    /* I — Tube pre-amplifier */
+    .archive-instruments .amp { padding: 25px 28px 27px; }
+    .archive-instruments .tube-stage {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(28px, 8vw, 70px);
+      padding: 22px 0 19px;
+      background: radial-gradient(ellipse at 50% 95%, #9b5b1824, transparent 66%);
+    }
+
+    .archive-instruments .tube-unit { text-align: center; }
+    .archive-instruments .tube {
+      position: relative;
+      height: 106px;
+      width: 48px;
+      margin: 0 auto;
+      border-radius: 23px 23px 8px 8px;
+      border: 1px solid #a894645c;
+      background:
+        linear-gradient(90deg, #ffffff0c, transparent 24%, #ffffff02 60%, #ffffff18 87%, transparent),
+        linear-gradient(0deg, #9d632e18, #ffffff04);
+      box-shadow: inset 0 0 15px #ffffff04, 0 0 18px #d3852412;
+    }
+
+    .archive-instruments .tube::before {
+      content: "";
+      position: absolute;
+      width: 16px;
+      top: 31px;
+      bottom: 13px;
+      left: 15px;
+      border: 1px solid #b37c43;
+      background: repeating-linear-gradient(0deg, #b28a4855 0 2px, #242019 2px 5px);
+      box-shadow: 0 0 12px #de6e1640;
+    }
+
+    .archive-instruments .filament {
+      position: absolute;
+      left: 22px;
+      top: 34px;
+      height: 55px;
+      width: 3px;
+      border-radius: 50%;
+      background: #ffd09b;
+      box-shadow: 0 0 5px #ffb84e, 0 0 15px #f97914, 0 0 28px #ff7a174d;
+      animation: archive-filament 3.7s infinite alternate;
+    }
+
+    .archive-instruments .tube-unit:nth-child(2) .filament { animation-delay: -1.6s; }
+    .archive-instruments .tube-base {
+      position: relative;
+      width: 64px;
+      height: 14px;
+      border-radius: 3px 3px 8px 8px;
+      margin: -2px auto 11px;
+      background: repeating-linear-gradient(90deg, #382c1d 0 3px, #796440 3px 4px);
+      border: 1px solid #83714d;
+      box-shadow: 0 5px 9px #0005;
+    }
+
+    .archive-instruments .tube-caption {
+      font-size: 8px;
+      color: #8c826c;
+      letter-spacing: .14em;
+    }
+
+    @keyframes archive-filament {
+      0%, 100% { opacity: .88; }
+      45% { opacity: .72; }
+      52% { opacity: .94; }
+      70% { opacity: .82; }
+    }
+
+    .archive-instruments .meter-pair {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 13px;
+    }
+
+    .archive-instruments .vu-frame {
+      position: relative;
+      padding: 6px;
+      border-radius: 7px;
+      background: linear-gradient(135deg, #bba376, #55432c 35%, #9c8357 80%, #51412b);
+      box-shadow: 0 5px 12px #0005;
+    }
+
+    .archive-instruments .vu-glass {
+      position: relative;
+      overflow: hidden;
+      border-radius: 3px;
+      background:
+        radial-gradient(ellipse at 50% 80%, #fff0b6, #d1ba84),
+        #e1c993;
+      box-shadow: inset 0 0 18px #5b3b2877;
+    }
+
+    .archive-instruments .vu-glass::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(145deg, #ffffff22, transparent 40%, #ffffff08 41%, transparent 70%);
+    }
+
+    .archive-instruments .vu-svg { display: block; width: 100%; height: auto; }
+    .archive-instruments .vu-needle { stroke: #46251d; stroke-width: 1.5; }
+    .archive-instruments .peak-light {
+      position: absolute;
+      right: 12px;
+      bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 6px;
+      letter-spacing: .06em;
+      color: #705940;
+    }
+
+    .archive-instruments .peak-light::before {
+      content: "";
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: #684835;
+    }
+
+    .archive-instruments .peak-light.is-peak::before {
+      background: #ef4927;
+      box-shadow: 0 0 6px #e84222;
+    }
+
+    .archive-instruments .amp-controls {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 22px;
+      margin-top: 25px;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+    }
+
+    .archive-instruments .control-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font: 17px "EB Garamond", serif;
+      color: #d6c9ac;
+    }
+
+    .archive-instruments .switch {
+      width: 32px;
+      height: 18px;
+      padding: 2px;
+      border-radius: 12px;
+      background: #11130f;
+      border: 1px solid #726344;
+      flex: none;
+      transition: background .2s;
+    }
+
+    .archive-instruments .switch::after {
+      content: "";
+      display: block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #c4af7f, #6e5936);
+      transition: transform .2s;
+      box-shadow: 0 1px 3px #0007;
+    }
+
+    .archive-instruments .switch[aria-pressed="true"] { background: #6e512a; }
+    .archive-instruments .switch[aria-pressed="true"]::after { transform: translateX(13px); }
+    .archive-instruments .microcopy {
+      font-size: 9px;
+      line-height: 1.7;
+      color: #958b75;
+      margin-top: 8px;
+    }
+
+    .archive-instruments input[type="range"] {
+      appearance: none;
+      display: block;
+      width: 100%;
+      height: 3px;
+      border-radius: 3px;
+      background: linear-gradient(90deg, #ac8c51, #4b4434);
+      cursor: pointer;
+      margin: 19px 0 12px;
+      touch-action: pan-y;
+    }
+
+    .archive-instruments input[type="range"]::-webkit-slider-thumb {
+      appearance: none;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      border: 2px solid #bda16a;
+      background: #373025;
+      box-shadow: 0 2px 5px #0006;
+    }
+
+    .archive-instruments input[type="range"]::-moz-range-thumb {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      border: 2px solid #bda16a;
+      background: #373025;
+    }
+
+    /* II — Celestial viewfinder */
+    .archive-instruments .observatory {
+      padding: 25px 28px;
+      background:
+        radial-gradient(ellipse at 50% 35%, #34362c, transparent 65%),
+        #20221b;
+    }
+
+    .archive-instruments .scope-shell {
+      width: min(100%, 294px);
+      aspect-ratio: 1;
+      padding: 18px;
+      margin: 20px auto;
+      position: relative;
+      border-radius: 50%;
+      background: conic-gradient(from 45deg, #645135, #c2a46b, #54442e, #a58c56, #dcc48e, #645135);
+      box-shadow: 0 12px 30px #0006, inset 0 0 0 2px #ddc48b5c, inset 0 0 0 7px #413823;
+    }
+
+    .archive-instruments .degree-ring {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    .archive-instruments .scope-lens {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      overflow: hidden;
+      background: #050b14;
+      border: 3px solid #1c1b15;
+      box-shadow: inset 0 0 30px #000;
+      isolation: isolate;
+    }
+
+    .archive-instruments .sky-art {
+      position: absolute;
+      inset: -6%;
+      transition: filter .18s, transform .25s;
+      background:
+        radial-gradient(ellipse at 48% 54%, #d9aec04d, transparent 12%),
+        radial-gradient(ellipse at 56% 42%, #466d9466, transparent 34%),
+        radial-gradient(ellipse at 45% 65%, #bf687b55, transparent 30%),
+        #050a14;
+    }
+
+    .archive-instruments .sky-art img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity .6s;
+    }
+
+    .archive-instruments .sky-art img.loaded { opacity: 1; }
+    .archive-instruments .fallback-stars { position: absolute; inset: 0; }
+    .archive-instruments .fallback-stars span {
+      position: absolute;
+      border-radius: 50%;
+      background: #dfe9ff;
+      box-shadow: 0 0 5px #b2d8ff;
+    }
+
+    .archive-instruments .lens-overlay {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      pointer-events: none;
+      background:
+        linear-gradient(135deg, #ffffff13 5%, transparent 38%, #ffffff03 39%, transparent 65%),
+        radial-gradient(circle, transparent 38%, #0009 100%);
+      z-index: 2;
+    }
+
+    .archive-instruments .reticle {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 3;
+      opacity: .65;
+      pointer-events: none;
+    }
+
+    .archive-instruments .scope-label {
+      position: absolute;
+      bottom: 20px;
+      width: 100%;
+      text-align: center;
+      font-size: 8px;
+      letter-spacing: .18em;
+      color: #d8cda8;
+      z-index: 4;
+    }
+
+    .archive-instruments .target-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .archive-instruments .target-btn {
+      border: 0;
+      border-right: 1px solid var(--line);
+      padding: 12px 3px;
+      background: transparent;
+      color: #a69f8a;
+      transition: color .2s, background .2s;
+      font-size: 9px;
+      line-height: 1.6;
+    }
+
+    .archive-instruments .target-btn:last-child { border-right: 0; }
+    .archive-instruments .target-btn strong {
+      display: block;
+      font: 18px "EB Garamond", serif;
+      font-weight: 400;
+    }
+
+    .archive-instruments .target-btn[aria-pressed="true"] {
+      background: #b6995c1a;
+      color: #e5d5ae;
+    }
+
+    .archive-instruments .focus-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 9px;
+      color: #a9a18b;
+      margin-top: 20px;
+    }
+
+    .archive-instruments .ledger {
+      background:
+        repeating-linear-gradient(0deg, #8e795806 0 1px, transparent 1px 3px),
+        #ddd2b8;
+      color: #3a382c;
+      border-radius: 3px;
+      padding: 17px 19px;
+      margin-top: 20px;
+      box-shadow: inset 0 0 25px #a2874c20;
+    }
+
+    .archive-instruments .ledger-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #84714e3b;
+    }
+
+    .archive-instruments .ledger-title { font: 22px "EB Garamond", serif; }
+    .archive-instruments .ledger-type { font: italic 12px "EB Garamond", serif; }
+
+    .archive-instruments .ledger dl {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 9px;
+      margin: 12px 0;
+    }
+
+    .archive-instruments .ledger dt {
+      font-size: 7px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: #76654b;
+    }
+
+    .archive-instruments .ledger dd {
+      font: 17px "EB Garamond", serif;
+      margin: 4px 0 0;
+    }
+
+    .archive-instruments .ledger-comment {
+      font: italic 15px/1.5 "EB Garamond", serif;
+    }
+
+    .archive-instruments .source-link {
+      color: #76654b;
+      font-size: 8px;
+      text-decoration-color: #76654b66;
+    }
+
+    /* III — Nocturnal expedition board */
+    .archive-instruments .ride {
+      padding: 32px;
+      background:
+        radial-gradient(ellipse at 25% 20%, #79573b23, transparent 65%),
+        repeating-linear-gradient(36deg, #ffffff02 0 1px, transparent 1px 4px),
+        #2b211b;
+      border-color: #71583a;
+    }
+
+    .archive-instruments .ride::before {
+      content: "";
+      position: absolute;
+      inset: 9px;
+      border: 1px dashed #aa845442;
+      border-radius: 4px;
+      pointer-events: none;
+    }
+
+    .archive-instruments .ride-layout {
+      display: grid;
+      grid-template-columns: minmax(220px, .85fr) minmax(0, 1.15fr);
+      align-items: center;
+      gap: 45px;
+      position: relative;
+    }
+
+    .archive-instruments .speed-bezel {
+      width: min(100%, 272px);
+      margin: auto;
+      border-radius: 50%;
+      padding: 9px;
+      background: conic-gradient(#d3b77b, #695130, #a88a53, #deca92, #6c542e, #d3b77b);
+      box-shadow: 0 10px 24px #0006, inset 0 0 0 2px #ffffff16;
+    }
+
+    .archive-instruments .speed-face {
+      position: relative;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: radial-gradient(circle at 45% 35%, #f0e5c9, #d0bf96);
+      box-shadow: inset 0 0 25px #69502766;
+      overflow: hidden;
+    }
+
+    .archive-instruments .speed-svg { width: 100%; height: 100%; display: block; }
+
+    .archive-instruments .odometer {
+      position: absolute;
+      left: 50%;
+      bottom: 22%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 2px;
+      padding: 3px;
+      background: #302d23;
+      border: 1px solid #9d8656;
+      box-shadow: 0 1px 4px #0004;
+    }
+
+    .archive-instruments .odometer span {
+      background: linear-gradient(#363226, #232219 50%, #3b382b);
+      color: #e1d7bb;
+      font-size: 13px;
+      padding: 2px 3px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .archive-instruments .speed-readout {
+      text-align: center;
+      font-size: 10px;
+      color: #bdab87;
+      margin-top: 15px;
+      letter-spacing: .09em;
+    }
+
+    .archive-instruments .ride-title {
+      font: 30px/1.2 "EB Garamond", serif;
+      color: #e7d8b9;
+      margin-top: 7px;
+    }
+
+    .archive-instruments .route {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      color: #b6a386;
+      font: italic 17px "EB Garamond", serif;
+      margin: 16px 0 23px;
+    }
+
+    .archive-instruments .route-separator { width: 23px; height: 1px; background: #8f744c; }
+
+    .archive-instruments .weather {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 15px;
+      border-top: 1px solid #b5935b2a;
+      border-bottom: 1px solid #b5935b2a;
+      padding: 20px 0;
+    }
+
+    .archive-instruments .weather dt {
+      color: #af9b7b;
+      font-size: 9px;
+      line-height: 1.6;
+    }
+
+    .archive-instruments .weather dd {
+      font: 28px "EB Garamond", serif;
+      margin: 7px 0 0;
+      color: #e2d2b2;
+    }
+
+    .archive-instruments .weather dd small { font-size: 14px; color: #bba988; }
+
+    .archive-instruments .ambience-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid #9c7d4b;
+      border-radius: 3px;
+      padding: 12px 17px;
+      color: #d6c19b;
+      background: #b6975820;
+      font-size: 10px;
+      letter-spacing: .06em;
+      margin-top: 22px;
+      transition: background .2s, transform .2s;
+    }
+
+    .archive-instruments .ambience-button:hover {
+      background: #b6975835;
+      transform: translateY(-1px);
+    }
+
+    .archive-instruments .ambience-button[aria-pressed="true"] {
+      background: #b6975840;
+      box-shadow: inset 0 0 16px #b6975810;
+    }
+
+    .archive-instruments .archive-footer {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding-top: 30px;
+      margin-top: 40px;
+      border-top: 1px solid var(--line);
+      color: #847d69;
+      font-size: 9px;
+      letter-spacing: .1em;
+    }
+
+    @media (max-width: 850px) {
+      .archive-instruments .collection { grid-template-columns: minmax(0, 1fr); }
+      .archive-instruments .archive-header { align-items: start; flex-direction: column; }
+      .archive-instruments .intro { max-width: 440px; }
+      .archive-instruments .ride-layout { gap: 28px; }
+    }
+
+    @media (max-width: 560px) {
+      .archive-instruments .amp,
+      .archive-instruments .observatory { padding: 24px 18px; }
+      .archive-instruments .ride { padding: 29px 22px; }
+      .archive-instruments .ride-layout { grid-template-columns: minmax(0, 1fr); }
+      .archive-instruments .ride-title { font-size: 27px; }
+      .archive-instruments .exhibit-heading h2 { font-size: 25px; }
+      .archive-instruments .weather { gap: 9px; }
+      .archive-instruments .weather dd { font-size: 25px; }
+      .archive-instruments .amp-controls { gap: 15px; }
+      .archive-instruments .control-title { font-size: 16px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .archive-instruments *, .archive-instruments *::before,
+      .archive-instruments *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
 </head>
 
 <body class="font-serif">
@@ -315,6 +1078,79 @@
             <span class="text-brass hidden sm:inline">·</span>
             <span class="block sm:inline">11 / 11 · Another year of curiosity, code & art</span>
           </div>
+
+          <!-- SOL INSTRUMENT 02 · CAIRO CELESTIAL VIEWFINDER -->
+          <div class="archive-instruments mt-10 text-left">
+            <!-- COMPONENT 02 · OBSERVATORY -->
+        <article class="exhibit" id="archive-telescope" aria-labelledby="scope-heading">
+          <div class="exhibit-heading">
+            <div>
+              <p class="eyebrow">The observatory</p>
+              <h2 class="serif" id="scope-heading">Above the sleeping city</h2>
+            </div>
+            <span class="catalog-number">No. 02</span>
+          </div>
+
+          <div class="instrument observatory">
+            <span class="screw tl" aria-hidden="true"></span>
+            <span class="screw tr" aria-hidden="true"></span>
+            <p class="plate">Cairo · 30.0444° N / 31.2357° E</p>
+
+            <div class="scope-shell">
+              <svg class="degree-ring" viewBox="0 0 300 300" aria-hidden="true"></svg>
+              <div class="scope-lens" role="img" aria-label="Archival view of the Orion Nebula" id="archive-sky-viewport">
+                <div class="sky-art" id="archive-sky-art">
+                  <div class="fallback-stars" aria-hidden="true"></div>
+                  <img id="archive-sky-image" alt="" decoding="async" referrerpolicy="no-referrer">
+                </div>
+                <svg class="reticle" viewBox="0 0 250 250" aria-hidden="true">
+                  <g fill="none" stroke="#e3d5a4" stroke-width=".55">
+                    <circle cx="125" cy="125" r="32" stroke-dasharray="2 6"></circle>
+                    <circle cx="125" cy="125" r="5"></circle>
+                    <path d="M0 125H108M142 125H250M125 0V108M125 142V250"></path>
+                    <path d="M44 121V129M77 122V128M173 122V128M206 121V129M121 44H129M122 77H128M122 173H128M121 206H129"></path>
+                  </g>
+                </svg>
+                <div class="lens-overlay"></div>
+                <span class="scope-label" id="archive-scope-label">M42 · ORION</span>
+              </div>
+            </div>
+
+            <div class="target-grid" role="group" aria-label="Select a deep-sky target">
+              <button class="target-btn" type="button" data-target="m42" aria-pressed="true"><strong>M42</strong>Orion</button>
+              <button class="target-btn" type="button" data-target="m45" aria-pressed="false"><strong>M45</strong>Pleiades</button>
+              <button class="target-btn" type="button" data-target="sirius" aria-pressed="false"><strong>α CMa</strong>Sirius</button>
+              <button class="target-btn" type="button" data-target="m31" aria-pressed="false"><strong>M31</strong>Andromeda</button>
+            </div>
+
+            <div class="focus-label">
+              <label for="archive-focus">OPTICAL FOCUS RING</label>
+              <output id="archive-focus-value" for="archive-focus">∞ · resolved</output>
+            </div>
+            <input id="archive-focus" type="range" min="0" max="100" value="72" aria-label="Optical focus" aria-valuetext="Resolved; optimal focus at 72">
+
+            <div class="ledger" aria-live="polite" aria-atomic="true">
+              <div class="ledger-top">
+                <span class="ledger-title" id="archive-target-name">The Orion Nebula</span>
+                <span class="ledger-type" id="archive-target-type">Emission nebula</span>
+              </div>
+              <dl>
+                <div><dt>Right ascension</dt><dd id="archive-ra">05h 35m 17s</dd></div>
+                <div><dt>Declination</dt><dd id="archive-dec">−05° 23′ 28″</dd></div>
+                <div><dt>Cairo altitude</dt><dd id="archive-altitude">Calculating…</dd></div>
+              </dl>
+              <p class="ledger-comment" id="archive-sky-comment"></p>
+              <div class="flex flex-wrap items-center justify-between gap-2 mt-3">
+                <span id="archive-sky-time" class="text-[8px] text-[#76654b]"></span>
+                <a class="source-link" id="archive-image-source" target="_blank" rel="noopener noreferrer">Photograph &amp; credit ↗</a>
+              </div>
+              <p id="archive-image-status" class="text-[8px] text-[#76654b] mt-2">Loading archival photograph…</p>
+            </div>
+          </div>
+          <p class="note">Archival photographs, not a live telescope feed. Altitudes are calculated for Cairo now; visibility also depends on daylight, season, weather, and city light.</p>
+        </article>
+          </div>
+
         </div>
       </div>
     </section>
@@ -387,6 +1223,87 @@
           </div>
         </article>
       </div>
+
+        <!-- SOL INSTRUMENT 03 · MIDNIGHT EXPEDITION BOARD -->
+        <div class="archive-instruments mt-14 reveal">
+          <!-- COMPONENT 03 · CABINET OF CURIOSITIES / STUDY 06 -->
+        <article class="exhibit exhibit-wide" id="archive-midnight-ride" aria-labelledby="ride-heading">
+          <div class="exhibit-heading">
+            <div>
+              <p class="eyebrow">Cabinet of curiosities · Study no. 06</p>
+              <h2 class="serif" id="ride-heading">The joy of cycling &amp; evening air</h2>
+            </div>
+            <span class="catalog-number">No. 03</span>
+          </div>
+
+          <div class="instrument ride">
+            <span class="screw tl" aria-hidden="true"></span>
+            <span class="screw tr" aria-hidden="true"></span>
+            <span class="screw bl" aria-hidden="true"></span>
+            <span class="screw br" aria-hidden="true"></span>
+
+            <div class="ride-layout">
+              <div>
+                <div class="speed-bezel">
+                  <div class="speed-face">
+                    <svg class="speed-svg" viewBox="0 0 260 260" role="img" aria-label="Simulated bicycle speedometer">
+                      <g id="archive-speed-scale"></g>
+                      <text x="130" y="87" text-anchor="middle" fill="#776448" font-family="Manrope, sans-serif" font-size="7" letter-spacing="2">CAIRO CYCLE WORKS</text>
+                      <text x="130" y="109" text-anchor="middle" fill="#554734" font-family="EB Garamond, serif" font-size="19">Vélocipède</text>
+                      <text x="130" y="216" text-anchor="middle" fill="#6d5c42" font-family="Manrope, sans-serif" font-size="8" letter-spacing="2">KM / H</text>
+                      <line id="archive-speed-needle" x1="130" y1="148" x2="130" y2="53" stroke="#703d2a" stroke-width="2.5"></line>
+                      <circle cx="130" cy="148" r="9" fill="#5b4930"></circle>
+                      <circle cx="130" cy="148" r="4" fill="#b9a16b"></circle>
+                    </svg>
+                    <div class="odometer" id="archive-odometer" aria-label="Session distance 0.00 kilometers">
+                      <span>0</span><span>0</span><span>0</span><span>0</span><span>0</span>
+                    </div>
+                  </div>
+                </div>
+                <p class="speed-readout"><output id="archive-speed-value">24</output> km/h · easy cruising</p>
+                <label class="sr-only" for="archive-speed">Simulated cruising speed in kilometers per hour</label>
+                <input id="archive-speed" type="range" min="0" max="45" value="24" aria-valuetext="24 kilometers per hour">
+                <p class="microcopy text-center">Adjust the pace · odometer in 0.01 km increments</p>
+              </div>
+
+              <div>
+                <p class="eyebrow">Cairo nocturnal route</p>
+                <h3 class="ride-title">03:00 AM Expedition</h3>
+                <div class="route" aria-label="Zamalek to Qasr El Nil to Corniche">
+                  <span>Zamalek</span><span class="route-separator"></span>
+                  <span>Qasr El Nil</span><span class="route-separator"></span>
+                  <span>Corniche</span>
+                </div>
+
+                <dl class="weather">
+                  <div>
+                    <dt><i data-lucide="wind" class="icon mb-2" aria-hidden="true"></i>Nile river breeze</dt>
+                    <dd>9 <small>km/h NNE</small></dd>
+                  </div>
+                  <div>
+                    <dt><i data-lucide="thermometer" class="icon mb-2" aria-hidden="true"></i>Night temperature</dt>
+                    <dd>21<small>°C</small></dd>
+                  </div>
+                  <div>
+                    <dt><i data-lucide="moon" class="icon mb-2" aria-hidden="true"></i>Silence index</dt>
+                    <dd>96<small>%</small></dd>
+                  </div>
+                </dl>
+
+                <button class="ambience-button" id="archive-ambience" type="button" aria-pressed="false">
+                  <i data-lucide="audio-lines" class="icon" aria-hidden="true"></i>
+                  <span>Nocturnal ambience</span>
+                  <span id="archive-ambience-state" class="text-[#aa916a]">OFF</span>
+                </button>
+                <p class="microcopy mt-3" id="archive-ride-status" role="status">Synthesized river breeze &amp; freewheel ratchet. Best heard softly.</p>
+                <p class="serif italic text-[#baa788] text-lg mt-5">“The city is another city, when everyone is asleep.”</p>
+              </div>
+            </div>
+          </div>
+          <p class="note">An imagined expedition, not live GPS or weather. Atmospheric readings are curated; the odometer measures this on-screen session while the page is visible.</p>
+        </article>
+        </div>
+
     </section>
 
     <!-- III. A visual shelf -->
@@ -621,6 +1538,94 @@
           <a href="https://open.spotify.com/playlist/0eLkO0gZZPqUz6J9L7aaU8?si=c31401a7d34d463d" target="_blank" rel="noopener noreferrer" class="inline-block text-sm italic underline underline-offset-4 text-muted mt-3">Open in Spotify App ↗</a>
         </div>
       </div>
+    
+        <!-- SOL INSTRUMENT 01 · VALVE PRE-AMPLIFIER & VU METERS -->
+        <div class="archive-instruments mt-10 reveal">
+          <!-- COMPONENT 01 · LISTENING ROOM -->
+        <article class="exhibit" id="archive-preamplifier" aria-labelledby="amp-heading">
+          <div class="exhibit-heading">
+            <div>
+              <p class="eyebrow">The listening room</p>
+              <h2 class="serif" id="amp-heading">A little warmth in the signal</h2>
+            </div>
+            <span class="catalog-number">No. 01</span>
+          </div>
+
+          <div class="instrument bronze amp">
+            <span class="screw tl" aria-hidden="true"></span>
+            <span class="screw tr" aria-hidden="true"></span>
+            <span class="screw bl" aria-hidden="true"></span>
+            <span class="screw br" aria-hidden="true"></span>
+
+            <p class="plate">A / A · Stereo valve pre-amplifier</p>
+
+            <div class="tube-stage" aria-hidden="true">
+              <div class="tube-unit">
+                <div class="tube"><span class="filament"></span></div>
+                <div class="tube-base"></div>
+                <span class="tube-caption">ECC83 · LEFT</span>
+              </div>
+              <div class="tube-unit">
+                <div class="tube"><span class="filament"></span></div>
+                <div class="tube-base"></div>
+                <span class="tube-caption">ECC83 · RIGHT</span>
+              </div>
+            </div>
+
+            <div class="meter-pair">
+              <div class="vu-frame">
+                <div class="vu-glass">
+                  <svg class="vu-svg" data-vu="left" viewBox="0 0 220 145" role="img" aria-label="Left channel VU meter">
+                    <g class="vu-scale"></g>
+                    <text x="110" y="101" text-anchor="middle" fill="#655439" font-family="EB Garamond, serif" font-size="20">VU</text>
+                    <text x="110" y="115" text-anchor="middle" fill="#806b47" font-family="Manrope, sans-serif" font-size="6" letter-spacing="2">LEFT CHANNEL</text>
+                    <line class="vu-needle" x1="110" y1="130" x2="110" y2="39"></line>
+                    <circle cx="110" cy="130" r="5" fill="#6a5332"></circle>
+                  </svg>
+                  <span class="peak-light" data-peak="left">PEAK</span>
+                </div>
+              </div>
+              <div class="vu-frame">
+                <div class="vu-glass">
+                  <svg class="vu-svg" data-vu="right" viewBox="0 0 220 145" role="img" aria-label="Right channel VU meter">
+                    <g class="vu-scale"></g>
+                    <text x="110" y="101" text-anchor="middle" fill="#655439" font-family="EB Garamond, serif" font-size="20">VU</text>
+                    <text x="110" y="115" text-anchor="middle" fill="#806b47" font-family="Manrope, sans-serif" font-size="6" letter-spacing="2">RIGHT CHANNEL</text>
+                    <line class="vu-needle" x1="110" y1="130" x2="110" y2="39"></line>
+                    <circle cx="110" cy="130" r="5" fill="#6a5332"></circle>
+                  </svg>
+                  <span class="peak-light" data-peak="right">PEAK</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="amp-controls">
+              <div>
+                <div class="control-title">
+                  <label for="archive-warmth-amount">Tube warmth</label>
+                  <button class="switch" id="archive-warmth" type="button" aria-label="Enable tube saturation" aria-pressed="false"></button>
+                </div>
+                <input id="archive-warmth-amount" type="range" min="0" max="100" value="35" aria-label="Tube saturation amount" aria-valuetext="35 percent">
+                <p class="microcopy">Soft-knee saturation · <span id="archive-warmth-value">35%</span> drive</p>
+              </div>
+              <div>
+                <div class="control-title">
+                  <span>Vinyl dust &amp; hiss</span>
+                  <button class="switch" id="archive-dust" type="button" aria-label="Enable vinyl dust and tape hiss" aria-pressed="false"></button>
+                </div>
+                <p class="microcopy">Procedural surface noise.<br>A whisper, rather than a distraction.</p>
+              </div>
+            </div>
+
+            <div class="status mt-5" id="archive-audio-status" role="status">
+              <span class="status-dot"></span>
+              <span>Standby · illustrative needle motion</span>
+            </div>
+          </div>
+          <p class="note">Two channels. One unhurried record. Connects to the Listening Room’s turntable; the needles follow the processed signal.</p>
+        </article>
+        </div>
+
     </section>
 
     <!-- V. Marginalia -->
@@ -1165,6 +2170,720 @@
           }
         }, { once: true });
       });
+    })();
+  </script>
+
+  <!-- Sol 6.1 Instruments Script -->
+  <script id="sol-instruments-js">
+(() => {
+      "use strict";
+      if (window.__abdallahInstrumentsMounted) return;
+      window.__abdallahInstrumentsMounted = true;
+
+      const $ = (selector) => document.querySelector(selector);
+      const $$ = (selector) => [...document.querySelectorAll(selector)];
+      const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
+      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+      const SVG_NS = "http://www.w3.org/2000/svg";
+
+      function svgElement(tag, attributes, text) {
+        const element = document.createElementNS(SVG_NS, tag);
+        Object.entries(attributes).forEach(([key, value]) => element.setAttribute(key, value));
+        if (text !== undefined) element.textContent = text;
+        return element;
+      }
+
+      function point(cx, cy, radius, angle) {
+        const rad = angle * Math.PI / 180;
+        return { x: cx + Math.sin(rad) * radius, y: cy - Math.cos(rad) * radius };
+      }
+
+      function tick(group, cx, cy, radius, length, angle, color, width = 1) {
+        const outer = point(cx, cy, radius, angle);
+        const inner = point(cx, cy, radius - length, angle);
+        group.append(svgElement("line", {
+          x1: outer.x, y1: outer.y, x2: inner.x, y2: inner.y,
+          stroke: color, "stroke-width": width
+        }));
+      }
+
+      /* Shared synthesis utilities. No audio starts without a user gesture. */
+      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+      let ambientContext = null;
+
+      async function getAmbientContext() {
+        if (!AudioContextClass) throw new Error("Web Audio is not supported by this browser.");
+        if (!ambientContext || ambientContext.state === "closed") {
+          ambientContext = new AudioContextClass();
+        }
+        await ambientContext.resume();
+        return ambientContext;
+      }
+
+      function noiseBuffer(context, seconds = 3, pink = false) {
+        const buffer = context.createBuffer(1, Math.ceil(context.sampleRate * seconds), context.sampleRate);
+        const data = buffer.getChannelData(0);
+        let b0 = 0, b1 = 0, b2 = 0;
+        for (let i = 0; i < data.length; i++) {
+          const white = Math.random() * 2 - 1;
+          if (pink) {
+            b0 = .99765 * b0 + white * .099046;
+            b1 = .963 * b1 + white * .2965164;
+            b2 = .57 * b2 + white * 1.0526913;
+            data[i] = (b0 + b1 + b2 + white * .1848) * .12;
+          } else data[i] = white;
+        }
+        return buffer;
+      }
+
+      function noiseLoop(context, buffer, destination) {
+        const source = context.createBufferSource();
+        source.buffer = buffer;
+        source.loop = true;
+        source.connect(destination);
+        source.start();
+        return source;
+      }
+
+      function clickSound(context, destination, amplitude, duration = .012, frequency = 2200) {
+        const buffer = context.createBuffer(1, Math.ceil(context.sampleRate * duration), context.sampleRate);
+        const data = buffer.getChannelData(0);
+        for (let i = 0; i < data.length; i++) {
+          data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (data.length * .14));
+        }
+        const source = context.createBufferSource();
+        const filter = context.createBiquadFilter();
+        const gain = context.createGain();
+        filter.type = "lowpass";
+        filter.frequency.value = frequency;
+        gain.gain.value = amplitude;
+        source.buffer = buffer;
+        source.connect(filter).connect(gain).connect(destination);
+        source.onended = () => {
+          source.disconnect(); filter.disconnect(); gain.disconnect();
+        };
+        source.start();
+      }
+
+      /* I. PRE-AMPLIFIER */
+      class TubePreamp {
+        constructor() {
+          this.audio = null;
+          this.context = null;
+          this.graph = null;
+          this.initializing = null;
+          this.failed = false;
+          this.warm = false;
+          this.dust = false;
+          this.hasPlayed = false;
+          this.levels = [0, 0];
+          this.peaksUntil = [0, 0];
+          this.lastFrame = performance.now();
+          this.lastCrackle = 0;
+          this.needles = $$(".vu-needle");
+          this.peakLights = $$("[data-peak]");
+          this.warmButton = $("#archive-warmth");
+          this.dustButton = $("#archive-dust");
+          this.status = $("#archive-audio-status span:last-child");
+
+          this.drawScales();
+          this.bindAudio();
+          this.observer = new MutationObserver(() => this.bindAudio());
+          this.observer.observe(document.body, { childList: true, subtree: true });
+
+          this.warmButton.addEventListener("click", () => this.toggle("warm"));
+          this.dustButton.addEventListener("click", () => this.toggle("dust"));
+          $("#archive-warmth-amount").addEventListener("input", (event) => {
+            const value = Number(event.target.value);
+            $("#archive-warmth-value").textContent = value + "%";
+            event.target.setAttribute("aria-valuetext", value + " percent");
+            this.setCurve();
+          });
+          this.frame = this.frame.bind(this);
+          this.raf = requestAnimationFrame(this.frame);
+        }
+
+        drawScales() {
+          $$(".vu-scale").forEach((group) => {
+            const values = [-20, -10, -7, -5, -3, -1, 0, 1, 2, 3];
+            const angles = [-58, -40, -29, -18, -5, 13, 24, 35, 46, 58];
+            this.dbValues = values;
+            this.dbAngles = angles;
+            const a = point(110, 130, 98, -58);
+            const b = point(110, 130, 98, 58);
+            group.append(svgElement("path", {
+              d: `M ${a.x} ${a.y} A 98 98 0 0 1 ${b.x} ${b.y}`,
+              fill: "none", stroke: "#665435", "stroke-width": ".8"
+            }));
+            values.forEach((value, i) => {
+              const color = value > 0 ? "#9a422e" : "#5e4e33";
+              tick(group, 110, 130, 98, 8, angles[i], color);
+              if (i < values.length - 1) {
+                tick(group, 110, 130, 98, 4, (angles[i] + angles[i + 1]) / 2, color, .6);
+              }
+              const p = point(110, 130, 111, angles[i]);
+              group.append(svgElement("text", {
+                x: p.x, y: p.y + 3, "text-anchor": "middle",
+                fill: color, "font-size": 9, "font-family": "EB Garamond, serif"
+              }, value > 0 ? "+" + value : value));
+            });
+          });
+        }
+
+        dbAngle(db) {
+          if (db <= -20) return -58;
+          if (db >= 3) return 58;
+          for (let i = 1; i < this.dbValues.length; i++) {
+            if (db <= this.dbValues[i]) {
+              const f = (db - this.dbValues[i - 1]) / (this.dbValues[i] - this.dbValues[i - 1]);
+              return this.dbAngles[i - 1] + f * (this.dbAngles[i] - this.dbAngles[i - 1]);
+            }
+          }
+          return 58;
+        }
+
+        bindAudio() {
+          if (this.audio) return;
+          const audio = document.getElementById("turntable-audio");
+          if (!(audio instanceof HTMLMediaElement)) return;
+          this.audio = audio;
+          this.status.textContent = "Turntable connected · standby illustration";
+          audio.addEventListener("play", () => {
+            this.hasPlayed = true;
+            this.ensureGraph().catch((error) => this.report(error));
+          });
+          audio.addEventListener("pause", () => this.updateStatus());
+          audio.addEventListener("ended", () => this.updateStatus());
+          if (!audio.paused) {
+            this.hasPlayed = true;
+            this.ensureGraph().catch((error) => this.report(error));
+          }
+        }
+
+        report(error) {
+          this.failed = true;
+          this.status.textContent = "Audio unavailable · check player routing and CORS";
+          console.warn("[Archive pre-amplifier]", error);
+        }
+
+        async ensureGraph() {
+          if (this.graph) {
+            await this.context.resume();
+            this.updateStatus();
+            return;
+          }
+          if (this.initializing) return this.initializing;
+          if (!this.audio) {
+            this.status.textContent = "Awaiting #turntable-audio · illustrative meters only";
+            throw new Error("The turntable audio element has not been mounted.");
+          }
+          if (!AudioContextClass) throw new Error("Web Audio is unavailable.");
+
+          this.initializing = (async () => {
+            const external = window.AbdallahTurntableGraph;
+            const context = external?.context || new AudioContextClass();
+            this.context = context;
+            await context.resume();
+
+            // Construct the complete downstream graph before re-routing the player.
+            const input = context.createGain();
+            const dry = context.createGain();
+            const wet = context.createGain();
+            const shaper = context.createWaveShaper();
+            const dcBlock = context.createBiquadFilter();
+            const output = context.createGain();
+            const hissGain = context.createGain();
+            const hissFilter = context.createBiquadFilter();
+            const crackleGain = context.createGain();
+            const splitter = context.createChannelSplitter(2);
+            const analysers = [context.createAnalyser(), context.createAnalyser()];
+
+            shaper.oversample = "4x";
+            dcBlock.type = "highpass";
+            dcBlock.frequency.value = 18;
+            dry.gain.value = 1;
+            wet.gain.value = 0;
+            output.gain.value = .88; // Leave headroom for coloration.
+            hissGain.gain.value = 0;
+            crackleGain.gain.value = 0;
+            hissFilter.type = "lowpass";
+            hissFilter.frequency.value = 4600;
+
+            input.connect(dry).connect(output);
+            input.connect(shaper).connect(dcBlock).connect(wet).connect(output);
+            hissFilter.connect(hissGain).connect(output);
+            crackleGain.connect(output);
+            output.connect(context.destination);
+            output.connect(splitter);
+
+            analysers.forEach((analyser, i) => {
+              analyser.fftSize = 2048;
+              splitter.connect(analyser, i);
+            });
+
+            let source;
+            try {
+              source = external?.source || context.createMediaElementSource(this.audio);
+              const upstream = external?.output || source;
+              if (external) {
+                // Remove only the existing destination route; preserve other taps.
+                try { upstream.disconnect(context.destination); } catch (_) {}
+              }
+              upstream.connect(input);
+            } catch (error) {
+              output.disconnect();
+              throw error;
+            }
+
+            this.graph = {
+              source, input, dry, wet, shaper, output, hissGain, hissFilter,
+              crackleGain, analysers,
+              buffers: analysers.map((a) => new Float32Array(a.fftSize)),
+              noise: noiseLoop(context, noiseBuffer(context, 4, true), hissFilter)
+            };
+            this.failed = false;
+            this.setCurve();
+            this.applySettings();
+            this.updateStatus();
+          })();
+
+          try { await this.initializing; }
+          finally { this.initializing = null; }
+        }
+
+        setCurve() {
+          if (!this.graph) return;
+          const strength = Number($("#archive-warmth-amount").value) / 100;
+          const drive = 1 + strength * 3.8;
+          const asymmetry = strength * .09;
+          const curve = new Float32Array(32769);
+          // Asymmetric, normalized tanh transfer produces even and odd harmonics.
+          const offset = Math.tanh(asymmetry);
+          const normalization = Math.max(
+            Math.abs(Math.tanh(drive + asymmetry) - offset),
+            Math.abs(Math.tanh(-drive + asymmetry) - offset)
+          );
+          for (let i = 0; i < curve.length; i++) {
+            const x = i * 2 / (curve.length - 1) - 1;
+            curve[i] = (Math.tanh(drive * x + asymmetry) - offset) / normalization;
+          }
+          this.graph.shaper.curve = curve;
+        }
+
+        async toggle(kind) {
+          const button = kind === "warm" ? this.warmButton : this.dustButton;
+          button.disabled = true;
+          try {
+            await this.ensureGraph();
+            this[kind] = !this[kind];
+            button.setAttribute("aria-pressed", String(this[kind]));
+            this.applySettings();
+          } catch (error) {
+            if (!this.audio) {
+              this.status.textContent = "Awaiting #turntable-audio · controls activate when connected";
+            } else this.report(error);
+          } finally {
+            button.disabled = false;
+          }
+        }
+
+        applySettings() {
+          if (!this.graph) return;
+          const t = this.context.currentTime;
+          const { dry, wet, hissGain, crackleGain } = this.graph;
+          dry.gain.setTargetAtTime(this.warm ? .35 : 1, t, .05);
+          wet.gain.setTargetAtTime(this.warm ? .65 : 0, t, .05);
+          const playing = this.audio && !this.audio.paused && !this.audio.ended;
+          hissGain.gain.setTargetAtTime(this.dust && playing ? .006 : 0, t, .12);
+          crackleGain.gain.setTargetAtTime(this.dust && playing ? 1 : 0, t, .05);
+        }
+
+        updateStatus() {
+          if (this.failed) return;
+          const playing = this.audio && !this.audio.paused && !this.audio.ended;
+          if (playing && this.graph) {
+            this.status.textContent = "Live stereo · 0 VU = −18 dBFS · PEAK ≥ −1 dBFS";
+          } else if (this.hasPlayed) {
+            this.status.textContent = "Turntable paused · needles at rest";
+          } else {
+            this.status.textContent = this.audio
+              ? "Turntable connected · standby illustration"
+              : "Standby · illustrative needle motion";
+          }
+          this.applySettings();
+        }
+
+        frame(now) {
+          const dt = Math.min((now - this.lastFrame) / 1000, .1);
+          this.lastFrame = now;
+          const playing = this.graph && this.context.state === "running" &&
+            this.audio && !this.audio.paused && !this.audio.ended;
+
+          for (let channel = 0; channel < 2; channel++) {
+            let target = 0;
+            if (playing) {
+              const data = this.graph.buffers[channel];
+              this.graph.analysers[channel].getFloatTimeDomainData(data);
+              let sum = 0, peak = 0;
+              for (const sample of data) {
+                sum += sample * sample;
+                peak = Math.max(peak, Math.abs(sample));
+              }
+              target = Math.sqrt(sum / data.length);
+              if (peak >= Math.pow(10, -1 / 20)) this.peaksUntil[channel] = now + 700;
+            } else if (!this.hasPlayed && !this.failed && !reducedMotion.matches) {
+              // Explicitly illustrative, never presented as an audio measurement.
+              const wave = .5 + .5 * Math.sin(now / 670 + channel * .8);
+              target = .026 + .074 * wave + .008 * Math.sin(now / 143 + channel);
+            }
+
+            const tau = target > this.levels[channel] ? .11 : .32;
+            this.levels[channel] += (target - this.levels[channel]) * (1 - Math.exp(-dt / tau));
+            const db = 20 * Math.log10(Math.max(this.levels[channel], .00001)) + 18;
+            this.needles[channel].setAttribute("transform", `rotate(${this.dbAngle(db)} 110 130)`);
+            this.peakLights[channel].classList.toggle("is-peak", playing && now < this.peaksUntil[channel]);
+          }
+
+          if (playing && this.dust && now - this.lastCrackle > 65) {
+            this.lastCrackle = now;
+            if (Math.random() < .12) {
+              clickSound(this.context, this.graph.crackleGain, .012 + Math.random() * .018, .006, 3200);
+            }
+          }
+          this.raf = requestAnimationFrame(this.frame);
+        }
+      }
+
+      /* II. CAIRO TELESCOPE */
+      class CairoTelescope {
+        constructor() {
+          this.targets = {
+            m42: {
+              name: "The Orion Nebula", type: "Emission nebula",
+              ra: 5 + 35 / 60 + 17.3 / 3600, dec: -(5 + 23 / 60 + 28 / 3600),
+              raText: "05h 35m 17s", decText: "−05° 23′ 28″", label: "M42 · ORION",
+              file: "Orion Nebula - Hubble 2006 mosaic 18000.jpg",
+              comment: "A stellar nursery beneath Orion’s belt. Finest on clear winter evenings; binoculars reveal its soft, luminous heart.",
+              gradient: "radial-gradient(ellipse at 48% 54%, #edbcd377, transparent 15%), radial-gradient(ellipse at 54% 42%, #487ead88, transparent 38%), radial-gradient(ellipse at 39% 65%, #bd607677, transparent 30%), #060b18"
+            },
+            m45: {
+              name: "The Pleiades · الثريا", type: "Open star cluster",
+              ra: 3 + 47 / 60 + 24 / 3600, dec: 24 + 7 / 60,
+              raText: "03h 47m 24s", decText: "+24° 07′ 00″", label: "M45 · SEVEN SISTERS",
+              file: "Pleiades large.jpg",
+              comment: "Seven sisters in a veil of blue reflection nebulosity. A lovely autumn and winter target; use a wide field, not high magnification.",
+              gradient: "radial-gradient(ellipse at 50% 50%, #518bba55, transparent 55%), #030b19"
+            },
+            sirius: {
+              name: "Sirius · الشعرى اليمانية", type: "Binary star",
+              ra: 6 + 45 / 60 + 8.9 / 3600, dec: -(16 + 42 / 60 + 58 / 3600),
+              raText: "06h 45m 09s", decText: "−16° 42′ 58″", label: "α CANIS MAJORIS · SIRIUS",
+              file: "Sirius A and B Hubble photo.jpg",
+              comment: "The brightest star in the night sky. Low over Cairo’s southern winter horizon, its light often scintillates through the restless air.",
+              gradient: "radial-gradient(circle at 50% 50%, #fff 0 1%, #d4ecff 2%, #82b6e666 7%, transparent 25%), #040a15"
+            },
+            m31: {
+              name: "The Andromeda Galaxy", type: "Spiral galaxy",
+              ra: 0 + 42 / 60 + 44.3 / 3600, dec: 41 + 16 / 60 + 9 / 3600,
+              raText: "00h 42m 44s", decText: "+41° 16′ 09″", label: "M31 · ANDROMEDA",
+              file: "Andromeda Galaxy (with h-alpha).jpg",
+              comment: "A neighboring island of stars, about 2.5 million light-years away. Best in autumn; Cairo’s light pollution makes dark-sky travel worthwhile.",
+              gradient: "radial-gradient(ellipse at 50% 50%, #ffefc599, #afad9b44 15%, #738ba733 28%, transparent 55%), #050a13"
+            }
+          };
+          this.current = "m42";
+          this.imageGeneration = 0;
+          this.drawRing();
+          this.drawStars();
+          $$("[data-target]").forEach((button) => {
+            button.addEventListener("click", () => this.select(button.dataset.target));
+          });
+          $("#archive-focus").addEventListener("input", () => this.focus());
+          this.select("m42");
+          this.focus();
+          this.timer = setInterval(() => this.telemetry(), 60000);
+        }
+
+        drawRing() {
+          const svg = $(".degree-ring");
+          for (let degree = 0; degree < 360; degree += 5) {
+            tick(svg, 150, 150, 142, degree % 30 === 0 ? 8 : 3, degree, "#332c1d", .8);
+            if (degree % 90 === 0) {
+              const p = point(150, 150, 132, degree);
+              svg.append(svgElement("text", {
+                x: p.x, y: p.y + 2, "text-anchor": "middle",
+                fill: "#2e291d", "font-size": 6, "font-family": "Manrope, sans-serif"
+              }, degree + "°"));
+            }
+          }
+        }
+
+        drawStars() {
+          const container = $(".fallback-stars");
+          // Seeded decorative star field; not a plotted astronomical chart.
+          let seed = 1123;
+          const random = () => {
+            seed = (seed * 16807) % 2147483647;
+            return (seed - 1) / 2147483646;
+          };
+          for (let i = 0; i < 95; i++) {
+            const star = document.createElement("span");
+            const size = .6 + random() * 1.7;
+            star.style.cssText = `left:${random() * 100}%;top:${random() * 100}%;width:${size}px;height:${size}px;opacity:${.25 + random() * .65}`;
+            container.append(star);
+          }
+        }
+
+        select(key) {
+          this.current = key;
+          const target = this.targets[key];
+          $$("[data-target]").forEach((button) => {
+            button.setAttribute("aria-pressed", String(button.dataset.target === key));
+          });
+          $("#archive-target-name").textContent = target.name;
+          $("#archive-target-type").textContent = target.type;
+          $("#archive-ra").textContent = target.raText;
+          $("#archive-dec").textContent = target.decText;
+          $("#archive-scope-label").textContent = target.label;
+          $("#archive-sky-comment").textContent = target.comment;
+          $("#archive-sky-viewport").setAttribute("aria-label", `Archival view of ${target.name}`);
+          $("#archive-sky-art").style.background = target.gradient;
+
+          const file = encodeURIComponent(target.file.replaceAll(" ", "_"));
+          $("#archive-image-source").href = `https://commons.wikimedia.org/wiki/File:${file}`;
+          $("#archive-image-status").textContent = "Loading archival photograph…";
+
+          const generation = ++this.imageGeneration;
+          const image = new Image();
+          image.id = "archive-sky-image";
+          image.alt = "";
+          image.decoding = "async";
+          image.referrerPolicy = "no-referrer";
+          $("#archive-sky-image").replaceWith(image);
+          image.onload = () => {
+            if (generation !== this.imageGeneration) return;
+            image.classList.add("loaded");
+            $("#archive-image-status").textContent = "Archival photograph · full authorship and license at source";
+          };
+          image.onerror = () => {
+            if (generation !== this.imageGeneration) return;
+            $("#archive-image-status").textContent = "Photograph unavailable · decorative sky illustration shown";
+            $("#archive-sky-viewport").setAttribute("aria-label", `Decorative illustration of ${target.name}; photograph unavailable`);
+          };
+          image.src = `https://commons.wikimedia.org/wiki/Special:FilePath/${file}?width=1200`;
+          this.telemetry();
+        }
+
+        focus() {
+          const slider = $("#archive-focus");
+          const value = Number(slider.value);
+          const error = Math.abs(value - 72) / 72;
+          const blur = error * 7;
+          const fringe = error * 3;
+          $("#archive-sky-art").style.filter =
+            `blur(${blur}px) drop-shadow(${fringe}px 0 1px #8d4f9655) drop-shadow(${-fringe}px 0 1px #488bba55)`;
+          $("#archive-sky-art").style.transform = `scale(${1 + error * .06})`;
+          $("#archive-focus-value").textContent = error < .045 ? "∞ · resolved" : `Δ ${Math.abs(value - 72)} · soft`;
+          slider.setAttribute("aria-valuetext", error < .045 ? "Resolved" : `Defocused by ${Math.abs(value - 72)} units; optimal focus at 72`);
+        }
+
+        telemetry() {
+          const target = this.targets[this.current];
+          const now = new Date();
+          const julianDate = now.getTime() / 86400000 + 2440587.5;
+          const days = julianDate - 2451545;
+          const centuries = days / 36525;
+          const gmst = 280.46061837 + 360.98564736629 * days +
+            .000387933 * centuries * centuries -
+            centuries * centuries * centuries / 38710000;
+          const lst = ((gmst + 31.2357) % 360 + 360) % 360;
+          const hourAngle = (lst - target.ra * 15) * Math.PI / 180;
+          const latitude = 30.0444 * Math.PI / 180;
+          const declination = target.dec * Math.PI / 180;
+          const altitude = Math.asin(
+            Math.sin(latitude) * Math.sin(declination) +
+            Math.cos(latitude) * Math.cos(declination) * Math.cos(hourAngle)
+          ) * 180 / Math.PI;
+
+          $("#archive-altitude").textContent = `${altitude >= 0 ? "+" : "−"}${Math.abs(altitude).toFixed(1)}°`;
+          const time = new Intl.DateTimeFormat("en-GB", {
+            timeZone: "Africa/Cairo", hour: "2-digit", minute: "2-digit"
+          }).format(now);
+          $("#archive-sky-time").textContent =
+            `${time} CAIRO · ${altitude > 0 ? "ABOVE HORIZON" : "BELOW HORIZON"} · geometric estimate`;
+        }
+      }
+
+      /* III. MIDNIGHT RIDE */
+      class MidnightRide {
+        constructor() {
+          this.speed = 24;
+          this.displaySpeed = 24;
+          this.distance = 0;
+          this.lastTime = performance.now();
+          this.active = false;
+          this.busy = false;
+          this.nodes = null;
+          this.clickTimer = null;
+          this.drawScale();
+          this.updateOdometer();
+          $("#archive-speed").addEventListener("input", (event) => {
+            this.speed = Number(event.target.value);
+            $("#archive-speed-value").textContent = this.speed;
+            event.target.setAttribute("aria-valuetext", `${this.speed} kilometers per hour`);
+          });
+          $("#archive-ambience").addEventListener("click", () => this.toggle());
+          document.addEventListener("visibilitychange", () => {
+            if (document.hidden && this.active) this.stop();
+            this.lastTime = performance.now();
+          });
+          this.frame = this.frame.bind(this);
+          this.raf = requestAnimationFrame(this.frame);
+        }
+
+        drawScale() {
+          const group = $("#archive-speed-scale");
+          for (let speed = 0; speed <= 50; speed += 1) {
+            const angle = -125 + speed / 50 * 250;
+            const major = speed % 5 === 0;
+            tick(group, 130, 148, 111, major ? 12 : 5, angle, "#746044", major ? 1.2 : .7);
+            if (major) {
+              const p = point(130, 148, 91, angle);
+              group.append(svgElement("text", {
+                x: p.x, y: p.y + 5, "text-anchor": "middle",
+                fill: "#5a4931", "font-size": 15, "font-family": "EB Garamond, serif"
+              }, speed));
+            }
+          }
+        }
+
+        updateOdometer() {
+          const hundredths = Math.floor(this.distance * 100) % 100000;
+          const digits = String(hundredths).padStart(5, "0");
+          [...$("#archive-odometer").children].forEach((digit, i) => {
+            digit.textContent = digits[i];
+          });
+          $("#archive-odometer").setAttribute("aria-label", `Session distance ${this.distance.toFixed(2)} kilometers`);
+        }
+
+        frame(now) {
+          const dt = Math.min((now - this.lastTime) / 1000, .1);
+          this.lastTime = now;
+          if (!document.hidden) {
+            this.displaySpeed = reducedMotion.matches
+              ? this.speed
+              : this.displaySpeed + (this.speed - this.displaySpeed) * (1 - Math.exp(-dt / .22));
+            const angle = -125 + this.displaySpeed / 50 * 250;
+            $("#archive-speed-needle").setAttribute("transform", `rotate(${angle} 130 148)`);
+            this.distance += this.speed * dt / 3600;
+            if (Math.floor(this.distance * 100) !== this.lastHundredth) {
+              this.lastHundredth = Math.floor(this.distance * 100);
+              this.updateOdometer();
+            }
+          }
+          this.raf = requestAnimationFrame(this.frame);
+        }
+
+        async toggle() {
+          if (this.busy) return;
+          if (this.active) { this.stop(); return; }
+          this.busy = true;
+          const button = $("#archive-ambience");
+          button.disabled = true;
+          try {
+            const context = await getAmbientContext();
+            if (document.hidden) return;
+            const master = context.createGain();
+            const filter = context.createBiquadFilter();
+            const windGain = context.createGain();
+            const lfo = context.createOscillator();
+            const lfoGain = context.createGain();
+
+            master.gain.value = 0;
+            master.connect(context.destination);
+            filter.type = "lowpass";
+            filter.frequency.value = 850;
+            windGain.gain.value = .09;
+            filter.connect(windGain).connect(master);
+            const wind = noiseLoop(context, noiseBuffer(context, 6, true), filter);
+            lfo.frequency.value = .12;
+            lfoGain.gain.value = .024;
+            lfo.connect(lfoGain).connect(windGain.gain);
+            lfo.start();
+
+            master.gain.setTargetAtTime(.7, context.currentTime, .3);
+            this.nodes = { context, master, filter, windGain, wind, lfo, lfoGain };
+            this.active = true;
+            button.setAttribute("aria-pressed", "true");
+            $("#archive-ambience-state").textContent = "ON";
+            $("#archive-ride-status").textContent = "Listening · synthesized river air and a softly turning freewheel.";
+            this.scheduleClick();
+          } catch (error) {
+            $("#archive-ride-status").textContent = "Ambience unavailable. Please enable browser audio and try again.";
+            console.warn("[Archive midnight ride]", error);
+          } finally {
+            this.busy = false;
+            button.disabled = false;
+          }
+        }
+
+        scheduleClick() {
+          if (!this.active || !this.nodes) return;
+          if (this.speed > 0 && !document.hidden && this.nodes.context.state === "running") {
+            clickSound(this.nodes.context, this.nodes.master, .016, .011, 2700);
+          }
+          // Ratchet cadence follows the simulated cruising speed.
+          const interval = this.speed > 0 ? clamp(2200 / this.speed, 45, 420) : 400;
+          this.clickTimer = setTimeout(() => this.scheduleClick(), interval * (.94 + Math.random() * .12));
+        }
+
+        stop() {
+          if (!this.nodes) return;
+          this.active = false;
+          clearTimeout(this.clickTimer);
+          const nodes = this.nodes;
+          this.nodes = null;
+          const t = nodes.context.currentTime;
+          nodes.master.gain.cancelScheduledValues(t);
+          nodes.master.gain.setTargetAtTime(0, t, .08);
+          nodes.wind.stop(t + .4);
+          nodes.lfo.stop(t + .4);
+          setTimeout(() => {
+            Object.entries(nodes).forEach(([key, node]) => {
+              if (key !== "context" && typeof node.disconnect === "function") node.disconnect();
+            });
+          }, 500);
+          $("#archive-ambience").setAttribute("aria-pressed", "false");
+          $("#archive-ambience-state").textContent = "OFF";
+          $("#archive-ride-status").textContent = "Synthesized river breeze & freewheel ratchet. Best heard softly.";
+        }
+      }
+
+      if (window.lucide) window.lucide.createIcons();
+
+      const preamp = new TubePreamp();
+      const telescope = new CairoTelescope();
+      const ride = new MidnightRide();
+
+      // Optional public handles for integration and lifecycle cleanup.
+      window.AbdallahArchiveInstruments = {
+        preamp, telescope, ride,
+        destroy() {
+          cancelAnimationFrame(preamp.raf);
+          cancelAnimationFrame(ride.raf);
+          clearInterval(telescope.timer);
+          preamp.observer.disconnect();
+          ride.stop();
+          if (preamp.graph) {
+            preamp.warm = false;
+            preamp.dust = false;
+            preamp.applySettings();
+            // Preserve the player's audio path; never close its AudioContext.
+          }
+        }
+      };
+
+      window.addEventListener("pagehide", () => ride.stop());
     })();
   </script>
 </body>
