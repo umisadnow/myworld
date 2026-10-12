@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#eee9dd">
+  <meta name="description" content="Abdallah’s studio and personal archive. A quiet collection of drawing, code, cinema, books, and songs that feel like home.">
+  <title>Abdallah — The Studio & Personal Archive</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            parchment: '#eee9dd',
+            paper: '#f6f2e9',
+            ink: '#263c52',
+            muted: '#71776d',
+            brass: '#9a7b45',
+            line: '#263c5229'
+          },
+          fontFamily: {
+            serif: ['EB Garamond', 'serif'],
+            sans: ['DM Sans', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+  <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+
+  <style>
+    :root { --ink: #263c52; --paper: #eee9dd; --brass: #9a7b45; }
+    html { scroll-behavior: smooth; scroll-padding-top: 32px; overflow-x: hidden; width: 100%; }
+    body {
+      color: var(--ink);
+      background: var(--paper) url('https://www.hueylightshop.com/cdn/shop/files/paper-texture.png?v=1784067065') repeat;
+      background-size: 650px;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      width: 100%;
+    }
+    ::selection { background: #263c52; color: #f6f2e9; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    button { touch-action: manipulation; }
+    :focus-visible { outline: 2px solid var(--brass); outline-offset: 5px; }
+    .eyebrow { font-family: 'DM Sans', sans-serif; font-size: 10px; letter-spacing: .18em; text-transform: uppercase; line-height: 1.8; }
+    .rule { height: 1px; background: #263c5229; }
+    .nav-link { position: relative; padding-bottom: 5px; }
+    .nav-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px; background: currentColor; transition: width .3s; }
+    .nav-link:hover::after { width: 100%; }
+    .star { font-family: 'EB Garamond', serif; font-size: 22px; line-height: 1; color: var(--brass); }
+    .section-number { display: inline-flex; align-items: center; gap: 12px; }
+    .section-number::before { content: ''; width: 25px; height: 1px; background: var(--brass); }
+    .glass-paper { background: #f6f2e9a8; backdrop-filter: blur(10px); }
+    .frame-blue { background: url('assets/frame-damask-blue.jpg') center / 100% 100% no-repeat; }
+    .frame-gold { background: url('assets/frame-damask-gold.jpg') center / 100% 100% no-repeat; }
+    .cabinet-card { padding: 14px; transition: transform .4s, box-shadow .4s; background-color: #b5c0c5; }
+    .cabinet-card.frame-gold { background-color: #c4b58e; }
+    .cabinet-card:hover { transform: translateY(-5px); box-shadow: 0 14px 30px #263c5210; }
+    .cabinet-inner { min-height: 265px; background: #eee9dded; border: 1px solid #263c5226; padding: 27px; }
+    .cabinet-icon { width: 27px; height: 27px; stroke-width: 1.15; }
+    .video-gallery-frame {
+      position: relative;
+      padding: 14px;
+      background: #c8b991 url('assets/frame-damask-gold.jpg') center / 280px repeat;
+      border: 1px solid #9a7b4580;
+      box-shadow: 0 16px 36px #263c5218, inset 0 0 0 2px #fffbf040;
+    }
+    .video-gallery-inner {
+      position: relative;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      background: #1c2934;
+      border: 1px solid #263c5233;
+    }
+    .video-gallery-inner video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .photo { filter: saturate(.75); transition: filter .5s, transform .7s; }
+    a:hover .photo, .image-card:hover .photo { filter: saturate(1); transform: scale(1.025); }
+    .portrait {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: contain;
+      background: #eee9dd;
+      display: block;
+      transition: transform .4s ease;
+    }
+    .record {
+      position: relative; width: 230px; aspect-ratio: 1; border-radius: 50%;
+      background: repeating-radial-gradient(circle, #171c21 0, #171c21 1px, #30353a 2px, #181e23 3px);
+      box-shadow: 0 7px 17px #0004, inset 0 0 0 2px #3d444a;
+      animation: rotation 6s linear infinite; animation-play-state: paused;
+    }
+    .record::before { content: ''; position: absolute; inset: 0; border-radius: 50%; background: conic-gradient(transparent 0deg, #ffffff14 42deg, transparent 85deg, transparent 180deg, #ffffff18 240deg, transparent 280deg); }
+    .record-label { position: absolute; inset: 33%; border-radius: 50%; background: #bb9e6a; border: 1px solid #ddd0b4; display: grid; place-content: center; text-align: center; }
+    .record-label::after { content: ''; position: absolute; width: 8px; height: 8px; border-radius: 50%; background: #26343e; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+    .tonearm { position: absolute; top: 20px; right: 33px; width: 15px; height: 140px; border: 4px solid #c7baa0; border-top-width: 8px; border-radius: 10px 10px 3px 3px; transform: rotate(-20deg); transform-origin: top center; box-shadow: 3px 3px 5px #0004; transition: transform .8s ease; }
+    .tonearm::after { content: ''; position: absolute; bottom: -14px; left: -4px; width: 16px; height: 30px; background: #a18a64; border-radius: 2px; }
+    .turntable.is-spinning .record { animation-play-state: running; }
+    .turntable.is-spinning .tonearm { transform: rotate(24deg); }
+    .wave { display: flex; align-items: center; gap: 3px; height: 22px; }
+    .wave span { display: block; width: 2px; height: 4px; background: #b89b68; animation: wave 1s ease-in-out infinite alternate; animation-play-state: paused; }
+    .wave.is-moving span { animation-play-state: running; }
+    .wave span:nth-child(3n) { animation-delay: -.7s; }
+    .wave span:nth-child(3n + 1) { animation-delay: -.3s; }
+    .wave span:nth-child(4n) { animation-duration: .7s; }
+    .track[aria-pressed="true"] { background: #263c520a; border-left-color: var(--brass); }
+    .track { border-left: 2px solid transparent; transition: background .2s; }
+    .track:hover { background: #263c5207; }
+    .reveal { opacity: 1; transform: none; }
+    .js .reveal { opacity: 0; transform: translateY(20px); transition: opacity .8s ease, transform .8s ease; }
+    .js .reveal.visible { opacity: 1; transform: none; }
+    dialog { color: var(--ink); width: min(600px, calc(100% - 24px)); max-height: 85vh; padding: 0; border: 1px solid #9a7b4580; background: var(--paper) url('https://www.hueylightshop.com/cdn/shop/files/paper-texture.png?v=1784067065'); box-shadow: 0 30px 100px #0004; }
+    dialog::backdrop { background: #14202b99; backdrop-filter: blur(6px); }
+    @keyframes rotation { to { transform: rotate(360deg); } }
+    @keyframes wave { from { height: 3px; } to { height: 21px; } }
+    @media (max-width: 640px) {
+      .video-gallery-frame { padding: 8px; }
+      .cabinet-card { padding: 10px; }
+      .cabinet-inner { min-height: auto; padding: 22px 18px; }
+      .record { width: 180px; }
+      .tonearm { right: 18px; height: 115px; width: 12px; }
+      .turntable { max-width: 100%; height: 265px; }
+    }
+    @media (min-width: 641px) and (max-width: 1024px) {
+      .cabinet-inner { min-height: 250px; padding: 24px 20px; }
+      .video-gallery-frame { padding: 10px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .js .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+
+<body class="font-serif">
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-paper focus:px-5 focus:py-3">Skip to the archive</a>
+
+  <!-- A small observatory for the passing of time. -->
+  <div class="border-b border-line">
+    <div class="max-w-[1440px] mx-auto px-5 md:px-10 py-3 flex flex-col sm:flex-row items-center justify-between gap-2">
+      <p class="eyebrow !text-[9px] text-center sm:text-left">Abdallah’s Studio & Personal Archive <span class="mx-2 text-brass">—</span> Cairo / Blue Hour</p>
+      <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
+        <a href="#observatory" class="font-serif italic text-[12px] text-muted hover:text-brass transition-colors underline decoration-dotted">Next orbit around the sun · Nov 11 ↓</a>
+        <div id="birthday-timer" class="flex items-center gap-2 font-mono text-[11px]" aria-label="Time until the next November 11 in Cairo">
+          <span><b id="count-days" class="font-normal">—</b><span class="text-muted ml-1">d</span></span>
+          <span class="text-brass">:</span>
+          <span><b id="count-hours" class="font-normal">—</b><span class="text-muted ml-1">h</span></span>
+          <span class="text-brass">:</span>
+          <span><b id="count-minutes" class="font-normal">—</b><span class="text-muted ml-1">m</span></span>
+          <span class="text-brass">:</span>
+          <span><b id="count-seconds" class="font-normal">—</b><span class="text-muted ml-1">s</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <header class="max-w-[1440px] mx-auto px-5 md:px-10">
+    <div class="relative py-9 md:py-11 text-center">
+      <p class="eyebrow text-brass mb-3 !text-[9px]">A life, thoughtfully collected</p>
+      <a href="#" aria-label="Abdallah, home" class="inline-block text-[35px] sm:text-[44px] leading-none tracking-[.22em] pl-[.22em]">ABDALLAH</a>
+      <p class="eyebrow mt-4 !text-[9px] tracking-[.22em]">Artist <span class="mx-2 text-brass">·</span> Programmer <span class="mx-2 text-brass">·</span> Curator</p>
+      <span class="hidden lg:block absolute left-0 top-1/2 -translate-y-1/2 font-serif italic text-sm text-muted">Est. in curiosity</span>
+      <div class="hidden lg:flex absolute right-0 top-1/2 -translate-y-1/2 gap-5">
+        <a href="https://open.spotify.com/user/31ugsbcviogk246fzlh6nb5vyzg4?si=h3W9YgFDSpW_o7A791pKiQ&utm_source=whatsapp" target="_blank" rel="noopener noreferrer" aria-label="Spotify" class="hover:text-brass"><i data-lucide="headphones" class="w-4 h-4"></i></a>
+        <a href="https://instagram.com/barelyabdullah?utm_source=qr&dlrf=MTZncTNidzdpa244aA==" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="hover:text-brass"><i data-lucide="instagram" class="w-4 h-4"></i></a>
+        <a href="https://www.tiktok.com/@barleyboobie?_r=1&_t=ZS-9ATij5AkG4C" target="_blank" rel="noopener noreferrer" aria-label="TikTok" class="hover:text-brass"><i data-lucide="music-2" class="w-4 h-4"></i></a>
+        <a href="https://boxd.it/lsVZV" target="_blank" rel="noopener noreferrer" aria-label="Letterboxd" class="hover:text-brass"><i data-lucide="film" class="w-4 h-4"></i></a>
+      </div>
+    </div>
+
+    <nav aria-label="Main navigation" class="border-y border-line">
+      <div class="md:hidden flex justify-between items-center py-4">
+        <span class="eyebrow">An index of little worlds</span>
+        <button id="menu-toggle" type="button" class="flex items-center gap-2 eyebrow" aria-expanded="false" aria-controls="nav-links">
+          Menu <i data-lucide="menu" class="w-4 h-4"></i>
+        </button>
+      </div>
+      <div id="nav-links" class="hidden md:flex flex-col md:flex-row justify-center items-center gap-5 md:gap-6 lg:gap-8 xl:gap-12 pb-5 md:py-4 text-[13px] flex-wrap">
+        <a class="nav-link" href="#about">About <span class="italic text-muted">[Abdallah]</span></a>
+        <a class="nav-link" href="#observatory">Nov 11 <span class="italic text-muted">[Countdown]</span></a>
+        <a class="nav-link" href="#passions">Cabinet <span class="italic text-muted">[08]</span></a>
+        <a class="nav-link" href="#curations">Curations <span class="italic text-muted">[05]</span></a>
+        <a class="nav-link" href="#sound">The Sound <span class="italic text-muted">[Turntable]</span></a>
+        <a class="nav-link" href="#journal">Journal</a>
+        <a class="nav-link" href="#socials">Socials <span class="text-brass ml-1">↗</span></a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <!-- I. The introduction -->
+    <section id="about" class="max-w-[1440px] mx-auto px-5 md:px-10 pt-10 sm:pt-12 md:pt-16 pb-14 md:pb-24">
+      <div class="grid lg:grid-cols-[.9fr_1.1fr] gap-8 lg:gap-16 items-center">
+        <div class="relative">
+          <div class="flex items-center gap-3 mb-6 sm:mb-7">
+            <span class="star">✳</span>
+            <span class="eyebrow">Between the tangible & the infinite</span>
+          </div>
+          <h1 class="text-[clamp(36px,5.5vw,78px)] leading-[1.05] tracking-[-.035em]">
+            A mind of many<br>
+            worlds. A heart<br>
+            for <em class="font-normal text-brass">quiet things.</em>
+          </h1>
+
+          <div class="flex items-start gap-4 mt-6 sm:mt-8">
+            <div class="flex-1 max-w-[375px]">
+              <p class="text-[17px] sm:text-[19px] leading-[1.65]">
+                Draftsman, developer, and seeker of quiet beauty. Creating between the precision of code and the fluidity of charcoal. An explorer of systems, stars, and stories.
+              </p>
+              <p class="text-[14px] sm:text-[15px] italic text-muted mt-4 sm:mt-5">Somewhere in Cairo, with a book left open<br class="hidden sm:block"> and a coffee slowly growing cold.</p>
+            </div>
+            <img src="https://www.hueylightshop.com/cdn/shop/files/girl_800x.png?v=1783561522"
+                 alt="A delicate vintage drawing of a girl" class="w-20 sm:w-28 md:w-32 h-auto object-contain opacity-75 self-end mix-blend-multiply shrink-0" width="128" height="176">
+          </div>
+
+          <img src="https://www.hueylightshop.com/cdn/shop/files/FlourishelevenBluemtn_1_800x.svg?v=1783561549" alt="" class="w-40 h-8 object-contain my-7 opacity-65" width="160" height="32">
+
+          <div class="flex flex-wrap gap-2 max-w-[480px]">
+            <span class="border border-line px-3 py-2 eyebrow !text-[8px]">40+ books read</span>
+            <span class="border border-line px-3 py-2 eyebrow !text-[8px]">Bug hunter</span>
+            <span class="border border-line px-3 py-2 eyebrow !text-[8px]">Cat lover</span>
+            <span class="border border-line px-3 py-2 eyebrow !text-[8px]">Cyclist</span>
+            <span class="border border-line px-3 py-2 eyebrow !text-[8px]">Dream destinations: Japan & USA</span>
+          </div>
+          <a href="#passions" class="inline-flex items-center gap-4 mt-8 eyebrow group">
+            Open the cabinet <i data-lucide="arrow-down" class="w-4 h-4 transition-transform group-hover:translate-y-1"></i>
+          </a>
+        </div>
+
+        <div class="relative">
+          <div class="flex justify-between items-center px-2 mb-3">
+            <span class="eyebrow !text-[8px]">A moving postcard</span>
+            <span class="font-serif italic text-sm text-muted">No. 001 — A softer pace</span>
+          </div>
+          <div class="video-gallery-frame">
+            <div class="video-gallery-inner">
+              <video id="ambient-video" autoplay muted loop playsinline preload="metadata"
+                     poster="https://www.hueylightshop.com/cdn/shop/files/slide-1-huey_1500x.png?v=1783561678"
+                     aria-label="An ambient moving postcard from the archive">
+                <source src="https://www.hueylightshop.com/cdn/shop/videos/c/vp/03f24efc862d4613806d5f3b6e6d2b81/03f24efc862d4613806d5f3b6e6d2b81.HD-1080p-7.2Mbps-88732015.mp4?v=0" type="video/mp4">
+              </video>
+              <div class="absolute inset-0 bg-gradient-to-t from-[#14202b]/85 via-transparent to-transparent pointer-events-none"></div>
+              <div class="absolute left-6 right-6 bottom-5 z-10 text-paper pointer-events-none">
+                <span class="eyebrow !text-[8px] opacity-80">Notes on being here</span>
+                <p class="text-[23px] sm:text-[30px] italic leading-tight mt-1">“There is an entire world<br class="hidden sm:block"> in the things we overlook.”</p>
+              </div>
+              <div class="absolute right-4 top-4 z-10 flex gap-2">
+                <button id="video-play" type="button" aria-label="Pause ambient video" class="w-9 h-9 rounded-full border border-white/35 bg-black/40 backdrop-blur-md text-white flex items-center justify-center hover:bg-black/60 transition-colors">
+                  <i data-lucide="pause" class="w-3.5 h-3.5"></i>
+                </button>
+                <button id="video-sound" type="button" aria-label="Unmute ambient video" aria-pressed="false" class="w-9 h-9 rounded-full border border-white/35 bg-black/40 backdrop-blur-md text-white flex items-center justify-center hover:bg-black/60 transition-colors">
+                  <i data-lucide="volume-x" class="w-3.5 h-3.5"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="flex justify-between items-center px-2 mt-3">
+            <p class="eyebrow !text-[8px] text-muted">Collected light. Borrowed stillness.</p>
+            <span class="text-brass text-xl">✧</span>
+          </div>
+          <p id="video-status" class="text-sm italic text-muted px-2 mt-2" role="status"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- The Solar Observatory / Grand Birthday Countdown -->
+    <section id="observatory" class="max-w-[1360px] mx-4 sm:mx-6 md:mx-10 xl:mx-auto my-8 sm:my-10 md:my-16 reveal">
+      <div class="frame-gold p-3.5 sm:p-5 md:p-6 bg-[#c4b58e] shadow-lg border border-brass/40">
+        <div class="bg-[#eee9ddf2] border border-ink/20 p-5 sm:p-8 md:p-12 text-center relative overflow-hidden">
+          <div class="flex items-center justify-center gap-3 mb-3">
+            <span class="star text-brass">✦</span>
+            <p class="eyebrow text-brass !text-[9px] sm:!text-[10px] tracking-[.25em]">The Astronomical Observatory · Solar Orbit</p>
+            <span class="star text-brass">✦</span>
+          </div>
+          <h2 class="text-2xl sm:text-4xl md:text-5xl tracking-[-.025em] mb-2 sm:mb-3">
+            Countdown to <em class="font-normal text-brass">November 11</em>
+          </h2>
+          <p class="font-serif italic text-muted text-sm sm:text-base md:text-lg max-w-xl mx-auto mb-6 sm:mb-8">
+            Marking each passing second until the next solar return in Cairo · Abdallah’s Birthday Archive.
+          </p>
+
+          <!-- Grand Digit Display -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-4 md:gap-6 max-w-2xl mx-auto">
+            <div class="bg-paper border border-line p-3 sm:p-5 md:p-6 shadow-sm">
+              <span id="big-count-days" class="block font-serif text-3xl sm:text-5xl md:text-6xl lg:text-7xl text-ink leading-none font-medium">---</span>
+              <span class="eyebrow !text-[8px] sm:!text-[9px] text-muted block mt-2 sm:mt-3 tracking-widest">Days</span>
+            </div>
+            <div class="bg-paper border border-line p-3 sm:p-5 md:p-6 shadow-sm">
+              <span id="big-count-hours" class="block font-serif text-3xl sm:text-5xl md:text-6xl lg:text-7xl text-ink leading-none font-medium">--</span>
+              <span class="eyebrow !text-[8px] sm:!text-[9px] text-muted block mt-2 sm:mt-3 tracking-widest">Hours</span>
+            </div>
+            <div class="bg-paper border border-line p-3 sm:p-5 md:p-6 shadow-sm">
+              <span id="big-count-minutes" class="block font-serif text-3xl sm:text-5xl md:text-6xl lg:text-7xl text-ink leading-none font-medium">--</span>
+              <span class="eyebrow !text-[8px] sm:!text-[9px] text-muted block mt-2 sm:mt-3 tracking-widest">Minutes</span>
+            </div>
+            <div class="bg-paper border border-line p-3 sm:p-5 md:p-6 shadow-sm">
+              <span id="big-count-seconds" class="block font-serif text-3xl sm:text-5xl md:text-6xl lg:text-7xl text-brass leading-none font-medium">--</span>
+              <span class="eyebrow !text-[8px] sm:!text-[9px] text-muted block mt-2 sm:mt-3 tracking-widest">Seconds</span>
+            </div>
+          </div>
+
+          <div class="mt-6 sm:mt-8 flex flex-wrap items-center justify-center gap-3 sm:gap-4 text-xs italic text-muted">
+            <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-brass animate-pulse"></span> Cairo Observatory Time (Africa/Cairo)</span>
+            <span class="text-brass hidden sm:inline">·</span>
+            <span class="block sm:inline">11 / 11 · Another year of curiosity, code & art</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- II. Disciplines & devotions -->
+    <section id="passions" class="max-w-[1440px] mx-auto px-5 md:px-10 py-16 md:py-24">
+      <div class="reveal flex flex-col md:flex-row md:items-end justify-between gap-5 mb-10">
+        <div>
+          <p class="eyebrow section-number text-brass mb-4">01 / Disciplines & devotions</p>
+          <h2 class="text-4xl md:text-5xl tracking-[-.025em]">The polymath’s <em class="font-normal">cabinet.</em></h2>
+        </div>
+        <p class="text-muted text-lg max-w-[310px] leading-relaxed">Eight drawers. The same curiosity.<br>These are the things I return to.</p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6">
+        <article class="cabinet-card frame-blue reveal">
+          <div class="cabinet-inner">
+            <div class="flex justify-between items-start"><i data-lucide="pencil" class="cabinet-icon"></i><span class="eyebrow text-muted !text-[8px]">Study no. 01</span></div>
+            <h3 class="text-[24px] leading-tight mt-6 mb-3">The fine art of drawing</h3>
+            <p class="text-[15px] leading-relaxed text-ink/75">Charcoal, ink, and natural talent. Bringing life to paper with delicate strokes and disciplined anatomy; a line becomes gesture, a shadow becomes emotion.</p>
+          </div>
+        </article>
+        <article class="cabinet-card frame-gold reveal">
+          <div class="cabinet-inner">
+            <div class="flex justify-between items-start"><i data-lucide="code-2" class="cabinet-icon"></i><span class="eyebrow text-muted !text-[8px]">Study no. 02</span></div>
+            <h3 class="text-[24px] leading-tight mt-6 mb-3">Code, architecture &<br>bug hunting</h3>
+            <p class="text-[15px] leading-relaxed text-ink/75">Elegant software, careful logic, and ethical security research. Dissecting systems beneath their surface, hunting bugs, and writing resilient code.</p>
+          </div>
+        </article>
+        <article class="cabinet-card frame-blue reveal">
+          <div class="cabinet-inner">
+            <div class="flex justify-between items-start"><i data-lucide="clapperboard" class="cabinet-icon"></i><span class="eyebrow text-muted !text-[8px]">Study no. 03</span></div>
+            <h3 class="text-[24px] leading-tight mt-6 mb-3">Graphic design &<br>video editing</h3>
+            <p class="text-[15px] leading-relaxed text-ink/75">Visual identities honed across studios and creative agencies. Sculpting videos through cinematic rhythm, color palettes, and emotional soundscapes.</p>
+          </div>
+        </article>
+        <article class="cabinet-card frame-gold reveal">
+          <div class="cabinet-inner">
+            <div class="flex justify-between items-start"><i data-lucide="cat" class="cabinet-icon"></i><span class="eyebrow text-muted !text-[8px]">Study no. 04</span></div>
+            <h3 class="text-[24px] leading-tight mt-6 mb-3">Feline devotion &<br>animal kinship</h3>
+            <p class="text-[15px] leading-relaxed text-ink/75">A soft purr, a slow blink, a small life choosing to trust you. A deep compassion for animals and a special tenderness for raising and caring for cats.</p>
+          </div>
+        </article>
+        <article class="cabinet-card frame-gold reveal">
+          <div class="cabinet-inner">
+            <div class="flex justify-between items-start"><i data-lucide="orbit" class="cabinet-icon"></i><span class="eyebrow text-muted !text-[8px]">Study no. 05</span></div>
+            <h3 class="text-[24px] leading-tight mt-6 mb-3">Astrophysics &<br>coffee rituals</h3>
+            <p class="text-[15px] leading-relaxed text-ink/75">The deep expanse of space and stars by night; artisanal single-origin brewing by morning. Fascinated by cosmic scale and the craft of making good coffee.</p>
+          </div>
+        </article>
+        <article class="cabinet-card frame-blue reveal">
+          <div class="cabinet-inner">
+            <div class="flex justify-between items-start"><i data-lucide="bike" class="cabinet-icon"></i><span class="eyebrow text-muted !text-[8px]">Study no. 06</span></div>
+            <h3 class="text-[24px] leading-tight mt-6 mb-3">The joy of cycling &<br>evening air</h3>
+            <p class="text-[15px] leading-relaxed text-ink/75">A simple, pure love for riding bicycles. Gliding through quiet streets as the blue hour settles, feeling the breeze, and enjoying the rhythm of solitary motion.</p>
+          </div>
+        </article>
+        <article class="cabinet-card frame-gold reveal">
+          <div class="cabinet-inner">
+            <div class="flex justify-between items-start"><i data-lucide="compass" class="cabinet-icon"></i><span class="eyebrow text-muted !text-[8px]">Study no. 07</span></div>
+            <h3 class="text-[24px] leading-tight mt-6 mb-3">Dream destinations:<br>Japan & America</h3>
+            <p class="text-[15px] leading-relaxed text-ink/75">Countries I long to visit one day. I haven't traveled there yet, but I dream of wandering Japan’s ancient wooden shrines and the boundless open highways of the USA.</p>
+          </div>
+        </article>
+        <article class="cabinet-card frame-blue reveal">
+          <div class="cabinet-inner">
+            <div class="flex justify-between items-start"><i data-lucide="book-open" class="cabinet-icon"></i><span class="eyebrow text-muted !text-[8px]">Study no. 08</span></div>
+            <h3 class="text-[24px] leading-tight mt-6 mb-3">Literary journeys &<br>40+ volumes</h3>
+            <p class="text-[15px] leading-relaxed text-ink/75">Over forty novels and works of literature read and treasured. Seeking philosophy, quiet introspection, and lives borrowed from timeless pages.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- III. A visual shelf -->
+    <section id="curations" class="border-y border-line bg-ink/[.025]">
+      <div class="max-w-[1440px] mx-auto px-5 md:px-10 py-14 md:py-16">
+        <div class="reveal flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+          <div>
+            <p class="eyebrow section-number text-brass mb-3">02 / The personal commonplace</p>
+            <h2 class="text-3xl md:text-4xl">Five artifacts in <em class="font-normal">atmosphere.</em></h2>
+          </div>
+          <span class="text-sm italic text-muted">Vintage print, acoustic tapes & quiet textures.</span>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 lg:gap-5">
+          <figure class="image-card reveal">
+            <div class="aspect-square overflow-hidden p-1 border border-line bg-paper shadow-sm">
+              <img src="assets/shelf-1-abadi.jpg" alt="Vintage press clipping: Abadi Al-Johar" loading="lazy" class="photo w-full h-full object-cover">
+            </div>
+          </figure>
+          <figure class="image-card reveal">
+            <div class="aspect-square overflow-hidden p-1 border border-line bg-paper shadow-sm">
+              <img src="assets/shelf-2-fairuz-book.jpg" alt="Vintage book page portrait of Fairuz" loading="lazy" class="photo w-full h-full object-cover">
+            </div>
+          </figure>
+          <figure class="image-card reveal">
+            <div class="aspect-square overflow-hidden p-1 border border-line bg-paper shadow-sm">
+              <img src="assets/shelf-3-damask-sage.jpg" alt="Antique sage green damask motif" loading="lazy" class="photo w-full h-full object-cover">
+            </div>
+          </figure>
+          <figure class="image-card reveal">
+            <div class="aspect-square overflow-hidden p-1 border border-line bg-paper shadow-sm">
+              <img src="assets/shelf-4-halim-cassette.jpg" alt="Vintage cassette tape of Abdel Halim Hafez - Zay El Hawa" loading="lazy" class="photo w-full h-full object-cover">
+            </div>
+          </figure>
+          <figure class="image-card reveal col-span-2 sm:col-span-1 max-w-[170px] sm:max-w-none mx-auto w-full">
+            <div class="aspect-square overflow-hidden p-1 border border-line bg-paper shadow-sm">
+              <img src="assets/shelf-5-antique-carpet.jpg" alt="Classical Aubusson antique floral French carpet" loading="lazy" class="photo w-full h-full object-cover">
+            </div>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- IV. The songs that stay -->
+    <section id="sound" class="max-w-[1440px] mx-auto px-5 md:px-10 py-16 md:py-24">
+      <div class="reveal text-center max-w-2xl mx-auto mb-12">
+        <p class="eyebrow text-brass mb-4">03 / The listening room</p>
+        <h2 class="text-4xl md:text-[56px] leading-tight tracking-[-.025em]">The golden <em class="font-normal">record.</em></h2>
+        <p class="text-lg text-muted mt-4">Some voices are not simply heard. They become a place to live.</p>
+        <span class="star inline-block mt-6">✳</span>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8 lg:gap-14">
+        <article class="reveal">
+          <div class="relative max-w-[240px] sm:max-w-[260px] mx-auto p-2 bg-paper border border-line shadow-sm mb-6">
+            <div class="aspect-square w-full overflow-hidden bg-[#ded7c4]">
+              <img src="assets/pinterest-1.jpg" alt="Portrait of Fairuz" loading="lazy" class="portrait">
+            </div>
+            <span class="absolute top-4 left-4 glass-paper px-2.5 py-0.5 eyebrow !text-[7px]">Side A</span>
+            <div class="absolute -bottom-4 -right-3 w-24 sm:w-28 rotate-[5deg] p-1.5 bg-paper shadow-md border border-line">
+              <img src="assets/pinterest-3.jpg" alt="A Fairuz cassette tape" loading="lazy" class="w-full h-auto aspect-square object-cover">
+              <p class="eyebrow !text-[6px] text-center mt-1">كتبنا وما كتبنا</p>
+            </div>
+          </div>
+          <div class="pt-2 pr-3">
+            <div class="flex items-baseline justify-between gap-4">
+              <div class="flex items-baseline gap-3">
+                <h3 class="text-3xl sm:text-4xl">Fairuz</h3>
+                <span lang="ar" dir="rtl" class="text-xl sm:text-2xl text-brass">فيروز</span>
+              </div>
+              <span class="eyebrow text-brass !text-[8px]">The morning voice</span>
+            </div>
+            <p class="text-base italic text-brass mt-1">The voice of morning light.</p>
+            <p class="mt-4 text-[17px] leading-[1.7] text-ink/80">
+              I love Fairuz for the way her voice makes room for silence. There is autumn in it, and the soft ache of something familiar just beyond reach. Her songs hold the eternal spirit of Levantine poetry: a window, a street, a love that time has not quite taken away.
+            </p>
+            <p class="mt-3 text-[17px] leading-[1.7] text-ink/80">When I draw, she reminds me that restraint can carry the deepest feeling. When I listen, the morning becomes less hurried. Memory finds its own light.</p>
+          </div>
+        </article>
+
+        <article class="reveal">
+          <div class="relative max-w-[240px] sm:max-w-[260px] mx-auto p-2 bg-paper border border-line shadow-sm mb-6">
+            <div class="aspect-square w-full overflow-hidden bg-[#ded7c4]">
+              <img src="assets/pinterest-4.jpg" alt="Portrait and album cover of Georgette Sayegh" loading="lazy" class="portrait">
+            </div>
+            <span class="absolute top-4 left-4 glass-paper px-2.5 py-0.5 eyebrow !text-[7px]">Side B</span>
+            <div class="absolute -bottom-4 -right-3 w-24 sm:w-28 -rotate-[5deg] p-1.5 bg-paper shadow-md border border-line">
+              <div class="w-full aspect-[4/3] bg-[#263c52] text-paper flex flex-col justify-center items-center p-1.5 text-center">
+                <span class="eyebrow !text-[6px] text-brass leading-none">ساعة نطرني</span>
+                <span class="text-[8px] italic mt-0.5 leading-none">Parlophone</span>
+              </div>
+              <p class="eyebrow !text-[6px] text-center mt-1">Sa'ah Natarni</p>
+            </div>
+          </div>
+          <div class="pt-2 pr-3">
+            <div class="flex items-baseline justify-between gap-4">
+              <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                <h3 class="text-3xl sm:text-4xl">Georgette Sayegh</h3>
+                <span lang="ar" dir="rtl" class="text-xl sm:text-2xl text-brass">جيورجيت صايغ</span>
+              </div>
+              <span class="eyebrow text-brass !text-[8px]">Theatrical soul</span>
+            </div>
+            <p class="text-base italic text-brass mt-1">A golden-era enchantress.</p>
+            <p class="mt-4 text-[17px] leading-[1.7] text-ink/80">
+              Georgette brings another kind of light: theatrical, tender, alive with character. In <em>Sa’ah Natarni</em> <span lang="ar" dir="rtl">(ساعة نطرني)</span>, waiting becomes something you can almost touch. I love the feeling suspended between a phrase and its answer, the humanity inside every small turn of the voice.
+            </p>
+            <p class="mt-3 text-[17px] leading-[1.7] text-ink/80">She reminds me why rhythm matters—in a film, in a story, in a life. A moment does not need to be grand to stay with you. It only needs to be true.</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="mt-14 md:mt-16 border border-line p-5 md:p-8 lg:p-10 grid lg:grid-cols-[.85fr_1.15fr] gap-8 lg:gap-12 bg-paper/35">
+        <!-- Turntable Real Audio Element -->
+        <audio id="turntable-audio" preload="auto" src="assets/audio/saah-natarni.m4a"></audio>
+
+        <div class="flex flex-col items-center">
+          <div class="w-full flex justify-between items-center mb-4">
+            <div class="flex items-center gap-2">
+              <span id="player-indicator" class="w-2 h-2 rounded-full bg-brass/40"></span>
+              <span id="player-status" class="eyebrow !text-[8px] text-brass">Ready to play</span>
+            </div>
+            <span class="eyebrow !text-[8px] text-muted">Archive Turntable · 33⅓ RPM</span>
+          </div>
+
+          <div id="turntable" class="turntable relative w-full max-w-[370px] h-[285px] sm:h-[300px] bg-[#35424a] border-[7px] border-[#b4a587] shadow-[inset_0_0_0_1px_#ead9b1] flex items-center justify-center pr-5">
+            <div class="record">
+              <div class="record-label">
+                <span id="record-track-name" class="eyebrow !text-[6px] mb-6 leading-tight max-w-[55px] truncate">Sa’ah Natarni</span>
+                <span id="record-track-artist" class="text-[7px] italic mt-2 text-ink">Georgette S.</span>
+              </div>
+            </div>
+            <div class="tonearm" aria-hidden="true"></div>
+            <span class="absolute left-3 bottom-2 text-[#ddd0b4] eyebrow !text-[6px]">Stereo / High-Fidelity</span>
+            <span class="absolute right-3 bottom-3 w-1.5 h-1.5 rounded-full bg-brass shadow-[0_0_8px_#b89b68]"></span>
+          </div>
+
+          <!-- Progress Bar & Time Display -->
+          <div class="w-full max-w-[370px] mt-4">
+            <div class="flex justify-between items-center text-[10px] font-mono text-muted mb-1.5">
+              <span id="audio-current-time">0:00</span>
+              <span id="now-playing-title" class="eyebrow !text-[8px] text-brass truncate max-w-[190px]">Sa’ah Natarni · Georgette Sayegh</span>
+              <span id="audio-duration">0:30</span>
+            </div>
+            <div id="progress-container" class="w-full h-1.5 bg-ink/10 rounded-full overflow-hidden cursor-pointer relative" title="Click to seek">
+              <div id="progress-bar" class="h-full bg-brass w-0 transition-all"></div>
+            </div>
+          </div>
+
+          <!-- Player Controls -->
+          <div class="flex items-center justify-between w-full max-w-[370px] mt-4">
+            <button id="spin-toggle" type="button" aria-pressed="false" class="flex items-center gap-3 eyebrow !text-[9px] hover:text-brass">
+              <span class="w-9 h-9 rounded-full border border-line flex items-center justify-center transition-colors hover:border-brass">
+                <i id="spin-icon" data-lucide="play" class="w-3.5 h-3.5 fill-current"></i>
+              </span>
+              <span id="spin-label">Play this record</span>
+            </button>
+            <div class="flex items-center gap-3">
+              <button id="volume-toggle" type="button" aria-label="Mute or unmute turntable audio" class="w-8 h-8 rounded-full border border-line flex items-center justify-center text-muted hover:text-brass hover:border-brass">
+                <i id="volume-icon" data-lucide="volume-2" class="w-3.5 h-3.5"></i>
+              </button>
+              <div id="visualizer" class="wave" aria-hidden="true">
+                <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+              </div>
+            </div>
+          </div>
+          <p class="mt-4 text-[12px] italic text-muted text-center max-w-xs">
+            Direct turntable playback from the studio archives.<br>Click any track on the right or press Play above.
+          </p>
+        </div>
+
+        <div class="flex flex-col justify-center">
+          <div class="flex items-start justify-between gap-4 mb-5">
+            <div>
+              <p class="eyebrow text-brass !text-[9px]">The evening selection</p>
+              <h4 class="text-2xl mt-1">Four songs to return to.</h4>
+            </div>
+            <i data-lucide="disc-3" class="w-7 h-7 stroke-[1] text-brass mt-2"></i>
+          </div>
+          <div id="track-list" class="border-y border-line">
+            <button class="track w-full flex items-center gap-4 text-left p-3.5 transition-colors cursor-pointer group" type="button" data-track="0" aria-pressed="true">
+              <span class="font-mono text-[10px] text-brass">01</span>
+              <span class="flex-1">
+                <span class="block text-lg">Sa’ah Natarni <span lang="ar" dir="rtl" class="text-sm text-muted">ساعة نطرني</span></span>
+                <span class="eyebrow !text-[8px] text-muted">Georgette Sayegh</span>
+              </span>
+              <span class="track-play-pill flex items-center text-brass">
+                <i data-lucide="play-circle" class="w-4 h-4"></i>
+              </span>
+            </button>
+            <button class="track w-full flex items-center gap-4 text-left p-3.5 border-t border-line transition-colors cursor-pointer group" type="button" data-track="1" aria-pressed="false">
+              <span class="font-mono text-[10px] text-brass">02</span>
+              <span class="flex-1">
+                <span class="block text-lg">Katabna W Ma Katabna <span lang="ar" dir="rtl" class="text-sm text-muted">كتبنا وما كتبنا</span></span>
+                <span class="eyebrow !text-[8px] text-muted">Fairuz</span>
+              </span>
+              <span class="track-play-pill flex items-center text-brass">
+                <i data-lucide="play-circle" class="w-4 h-4"></i>
+              </span>
+            </button>
+            <button class="track w-full flex items-center gap-4 text-left p-3.5 border-t border-line transition-colors cursor-pointer group" type="button" data-track="2" aria-pressed="false">
+              <span class="font-mono text-[10px] text-brass">03</span>
+              <span class="flex-1">
+                <span class="block text-lg">Kifak Inta <span lang="ar" dir="rtl" class="text-sm text-muted">كيفك إنت</span></span>
+                <span class="eyebrow !text-[8px] text-muted">Fairuz</span>
+              </span>
+              <span class="track-play-pill flex items-center text-brass">
+                <i data-lucide="play-circle" class="w-4 h-4"></i>
+              </span>
+            </button>
+            <button class="track w-full flex items-center gap-4 text-left p-3.5 border-t border-line transition-colors cursor-pointer group" type="button" data-track="3" aria-pressed="false">
+              <span class="font-mono text-[10px] text-brass">04</span>
+              <span class="flex-1">
+                <span class="block text-lg">Ya Bouy (Boya Boya) <span lang="ar" dir="rtl" class="text-sm text-muted">يا بوي</span></span>
+                <span class="eyebrow !text-[8px] text-muted">Georgette Sayegh</span>
+              </span>
+              <span class="track-play-pill flex items-center text-brass">
+                <i data-lucide="play-circle" class="w-4 h-4"></i>
+              </span>
+            </button>
+          </div>
+          <div class="mt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <p id="track-note" class="text-sm italic text-muted" aria-live="polite">On waiting, tenderness, and the spaces in between.</p>
+            <a id="track-link" href="https://open.spotify.com/search/Georgette%20Sayegh%20Sa%27ah%20Natarni" target="_blank" rel="noopener noreferrer" class="eyebrow !text-[8px] underline underline-offset-4 shrink-0">Find on Spotify ↗</a>
+          </div>
+        </div>
+
+        <div class="lg:col-span-2 border-t border-line pt-7">
+          <div class="flex flex-wrap justify-between items-center gap-3 mb-4">
+            <p class="eyebrow !text-[9px]">The Spotify companion / Full discography</p>
+            <a class="eyebrow !text-[8px] hover:text-brass" href="https://open.spotify.com/playlist/0eLkO0gZZPqUz6J9L7aaU8?si=c31401a7d34d463d" target="_blank" rel="noopener noreferrer">Abdallah’s Curated Playlist ↗</a>
+          </div>
+          <iframe title="Abdallah’s listening room — Spotify playlist" style="border-radius:12px;border:0" src="https://open.spotify.com/embed/playlist/0eLkO0gZZPqUz6J9L7aaU8?utm_source=generator&theme=0" width="100%" height="152" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+          <a href="https://open.spotify.com/playlist/0eLkO0gZZPqUz6J9L7aaU8?si=c31401a7d34d463d" target="_blank" rel="noopener noreferrer" class="inline-block text-sm italic underline underline-offset-4 text-muted mt-3">Open in Spotify App ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- V. Marginalia -->
+    <section id="journal" class="border-y border-line">
+      <div class="max-w-[1440px] mx-auto px-5 md:px-10 py-16 md:py-24">
+        <div class="grid lg:grid-cols-[.85fr_1.15fr] gap-10 lg:gap-16">
+          <div class="reveal">
+            <p class="eyebrow section-number text-brass mb-4">04 / The reading ledger & cinema</p>
+            <h2 class="text-4xl md:text-5xl leading-[1.1]">Lives borrowed.<br><em class="font-normal">Worlds kept.</em></h2>
+            <div class="flex items-center gap-5 my-7">
+              <span class="text-[76px] leading-none text-brass">40<span class="text-[40px] align-top">+</span></span>
+              <div class="border-l border-line pl-5"><p class="eyebrow !text-[9px]">Novels & literary works</p><p class="italic text-muted mt-1">And still, so many doors unopened.</p></div>
+            </div>
+            <p class="text-lg leading-relaxed text-ink/80 max-w-md">I read for the lives I cannot live in a single lifetime. Timeless novels, philosophy, and classical manuscripts offer a slower kind of discovery: the strange relief of finding your own thoughts in someone else’s words.</p>
+            <p class="text-lg leading-relaxed text-ink/80 mt-4 max-w-md">Cinema is another shelf in the same library. A cut, a color, a lingering frame—another way to understand what it means to be here.</p>
+            <a href="https://boxd.it/lsVZV" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 mt-7 border-b border-ink pb-2 eyebrow !text-[9px] hover:text-brass hover:border-brass">
+              <i data-lucide="film" class="w-4 h-4"></i> My cinema diary on Letterboxd <span>↗</span>
+            </a>
+          </div>
+
+          <div class="reveal">
+            <div class="frame-gold p-4 bg-[#c4b58e]">
+              <div class="relative h-[260px] md:h-[310px] overflow-hidden border border-brass/30">
+                <img src="https://www.hueylightshop.com/cdn/shop/files/DreamDiningRoom_1.png?v=1783997057&width=1500" alt="An inviting interior, a visual reference for a room made for lingering" loading="lazy" class="w-full h-full object-cover photo">
+                <div class="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/10 to-transparent"></div>
+                <div class="absolute bottom-6 left-6 right-6 text-paper">
+                  <p class="eyebrow !text-[8px] mb-2">A note in the margin</p>
+                  <p class="text-2xl md:text-3xl italic">“A room, a page, a little more time.”</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-6">
+              <p class="eyebrow !text-[8px] text-muted mb-3">Fragments from the personal archive</p>
+              <button data-story="reading" type="button" class="w-full flex items-center justify-between py-4 border-t border-line text-left group">
+                <span><span class="eyebrow !text-[8px] text-brass block mb-1">Marginalia / 01</span><span class="text-xl">On reading slowly</span></span>
+                <i data-lucide="arrow-up-right" class="w-4 h-4 group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform"></i>
+              </button>
+              <button data-story="cinema" type="button" class="w-full flex items-center justify-between py-4 border-t border-line text-left group">
+                <span><span class="eyebrow !text-[8px] text-brass block mb-1">Moving images / 02</span><span class="text-xl">The space between two frames</span></span>
+                <i data-lucide="arrow-up-right" class="w-4 h-4 group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform"></i>
+              </button>
+              <button data-story="bluehour" type="button" class="w-full flex items-center justify-between py-4 border-y border-line text-left group">
+                <span><span class="eyebrow !text-[8px] text-brass block mb-1">Small rituals / 03</span><span class="text-xl">A bicycle at blue hour</span></span>
+                <i data-lucide="arrow-up-right" class="w-4 h-4 group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VI. The invitation -->
+    <section id="socials" class="max-w-[1440px] mx-auto px-5 md:px-10 pt-16 md:pt-20 pb-10">
+      <div class="reveal grid md:grid-cols-2 items-center gap-10">
+        <div>
+          <p class="eyebrow section-number text-brass mb-4">05 / Social orbit & dialogue</p>
+          <h2 class="text-4xl md:text-5xl">Our paths may <em class="font-normal">cross.</em></h2>
+          <p class="text-lg text-muted mt-4 max-w-md">A song to share, a film to recommend, a thought worth keeping. Find me in these little corners of the internet.</p>
+          <p class="text-sm italic text-brass mt-5">For a conversation, a quiet hello on Instagram is enough.</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-7 gap-y-2">
+          <a href="https://open.spotify.com/user/31ugsbcviogk246fzlh6nb5vyzg4?si=h3W9YgFDSpW_o7A791pKiQ&utm_source=whatsapp" target="_blank" rel="noopener noreferrer" class="group border-b border-line py-4 sm:py-5 flex justify-between items-center gap-2 hover:text-brass">
+            <span class="flex items-center gap-3"><i data-lucide="headphones" class="w-4 h-4 stroke-[1.3]"></i><span><span class="block text-xl">Spotify</span><span class="eyebrow !text-[7px] text-muted">The soundtrack</span></span></span><i data-lucide="arrow-up-right" class="w-4 h-4 transition-transform group-hover:-translate-y-1"></i>
+          </a>
+          <a href="https://instagram.com/barelyabdullah?utm_source=qr&dlrf=MTZncTNidzdpa244aA==" target="_blank" rel="noopener noreferrer" class="group border-b border-line py-4 sm:py-5 flex justify-between items-center gap-2 hover:text-brass">
+            <span class="flex items-center gap-3"><i data-lucide="instagram" class="w-4 h-4 stroke-[1.3]"></i><span><span class="block text-xl">Instagram</span><span class="eyebrow !text-[7px] text-muted">The everyday</span></span></span><i data-lucide="arrow-up-right" class="w-4 h-4 transition-transform group-hover:-translate-y-1"></i>
+          </a>
+          <a href="https://www.tiktok.com/@barleyboobie?_r=1&_t=ZS-9ATij5AkG4C" target="_blank" rel="noopener noreferrer" class="group border-b border-line py-4 sm:py-5 flex justify-between items-center gap-2 hover:text-brass">
+            <span class="flex items-center gap-3"><i data-lucide="music-2" class="w-4 h-4 stroke-[1.3]"></i><span><span class="block text-xl">TikTok</span><span class="eyebrow !text-[7px] text-muted">Passing moments</span></span></span><i data-lucide="arrow-up-right" class="w-4 h-4 transition-transform group-hover:-translate-y-1"></i>
+          </a>
+          <a href="https://boxd.it/lsVZV" target="_blank" rel="noopener noreferrer" class="group border-b border-line py-4 sm:py-5 flex justify-between items-center gap-2 hover:text-brass">
+            <span class="flex items-center gap-3"><i data-lucide="film" class="w-4 h-4 stroke-[1.3]"></i><span><span class="block text-xl">Letterboxd</span><span class="eyebrow !text-[7px] text-muted">The cinema diary</span></span></span><i data-lucide="arrow-up-right" class="w-4 h-4 transition-transform group-hover:-translate-y-1"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="text-center mt-16 md:mt-20">
+        <img src="https://www.hueylightshop.com/cdn/shop/files/FlourishbottomParchment_1.svg?v=1782503433&width=1920" alt="" class="mx-auto w-full max-w-[570px] h-24 md:h-32 object-contain opacity-75" loading="lazy" width="570" height="128">
+        <p class="text-xl italic mt-3">An unfinished archive. A life still becoming.</p>
+        <p class="eyebrow !text-[8px] text-brass mt-4">Made of curiosity, care, and a little blue hour.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="max-w-[1440px] mx-auto px-5 md:px-10">
+    <div class="border-t border-line py-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+      <p class="eyebrow !text-[8px] text-muted">© <span id="year"></span> Abdallah · The Studio & Personal Archive</p>
+      <div class="flex items-center gap-2">
+        <span class="w-1.5 h-1.5 rounded-full bg-brass"></span>
+        <span class="eyebrow !text-[8px]">Cairo <span class="text-muted mx-1">/</span> <time id="cairo-time" class="font-mono tracking-normal">—</time></span>
+      </div>
+      <a href="#" class="eyebrow !text-[8px] flex items-center gap-2 hover:text-brass">Back to the beginning <i data-lucide="arrow-up" class="w-3 h-3"></i></a>
+    </div>
+  </footer>
+
+  <dialog id="story-dialog" aria-labelledby="story-title">
+    <div class="p-6 sm:p-11 max-h-[85vh] overflow-y-auto">
+      <div class="flex items-center justify-between gap-4 mb-8">
+        <p id="story-category" class="eyebrow !text-[9px] text-brass"></p>
+        <button id="close-dialog" type="button" class="w-9 h-9 border border-line rounded-full flex items-center justify-center hover:bg-ink/5" aria-label="Close story"><i data-lucide="x" class="w-4 h-4"></i></button>
+      </div>
+      <h2 id="story-title" class="text-4xl leading-tight mb-6"></h2>
+      <div id="story-content" class="text-xl leading-[1.75] space-y-5 text-ink/85"></div>
+      <div class="mt-9 pt-5 border-t border-line flex justify-between items-center"><span class="italic text-muted">Abdallah’s personal archive</span><span class="star">✳</span></div>
+    </div>
+  </dialog>
+
+  <script>
+    (() => {
+      'use strict';
+
+      const $ = (id) => document.getElementById(id);
+      const renderIcons = () => {
+        if (window.lucide) window.lucide.createIcons();
+      };
+      renderIcons();
+
+      // Reveal progressively, with a safe fallback.
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      if ('IntersectionObserver' in window && !reducedMotion.matches) {
+        document.documentElement.classList.add('js');
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.08 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+      }
+
+      // Responsive navigation.
+      const menuButton = $('menu-toggle');
+      const nav = $('nav-links');
+      menuButton.addEventListener('click', () => {
+        const expanded = menuButton.getAttribute('aria-expanded') === 'true';
+        menuButton.setAttribute('aria-expanded', String(!expanded));
+        nav.classList.toggle('hidden', expanded);
+        nav.classList.toggle('flex', !expanded);
+      });
+      nav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          nav.classList.add('hidden');
+          nav.classList.remove('flex');
+          menuButton.setAttribute('aria-expanded', 'false');
+        });
+      });
+
+      // Cairo calendar conversions account for daylight-saving offsets.
+      const zone = 'Africa/Cairo';
+      const calendarFormatter = new Intl.DateTimeFormat('en-GB', {
+        timeZone: zone, year: 'numeric', month: '2-digit', day: '2-digit',
+        hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23'
+      });
+      const clockFormatter = new Intl.DateTimeFormat('en-GB', {
+        timeZone: zone, hour: '2-digit', minute: '2-digit', second: '2-digit',
+        hourCycle: 'h23'
+      });
+
+      function cairoParts(date) {
+        const values = {};
+        calendarFormatter.formatToParts(date).forEach(part => {
+          if (part.type !== 'literal') values[part.type] = Number(part.value);
+        });
+        return values;
+      }
+
+      function birthdayInstant(year) {
+        const desired = Date.UTC(year, 10, 11, 0, 0, 0);
+        let candidate = desired;
+        for (let i = 0; i < 3; i++) {
+          const p = cairoParts(new Date(candidate));
+          const localAsUTC = Date.UTC(p.year, p.month - 1, p.day, p.hour, p.minute, p.second);
+          candidate += desired - localAsUTC;
+        }
+        return candidate;
+      }
+
+      let target = 0;
+      function updateTime() {
+        const now = new Date();
+        const local = cairoParts(now);
+        if (!target || target <= now.getTime()) {
+          target = birthdayInstant(local.year);
+          if (target <= now.getTime()) target = birthdayInstant(local.year + 1);
+        }
+
+        let seconds = Math.max(0, Math.floor((target - now.getTime()) / 1000));
+        const days = Math.floor(seconds / 86400);
+        seconds %= 86400;
+        const hours = Math.floor(seconds / 3600);
+        seconds %= 3600;
+        const minutes = Math.floor(seconds / 60);
+        seconds %= 60;
+
+        $('count-days').textContent = String(days).padStart(3, '0');
+        $('count-hours').textContent = String(hours).padStart(2, '0');
+        $('count-minutes').textContent = String(minutes).padStart(2, '0');
+        $('count-seconds').textContent = String(seconds).padStart(2, '0');
+
+        const bigDays = $('big-count-days');
+        if (bigDays) {
+          bigDays.textContent = String(days).padStart(3, '0');
+          $('big-count-hours').textContent = String(hours).padStart(2, '0');
+          $('big-count-minutes').textContent = String(minutes).padStart(2, '0');
+          $('big-count-seconds').textContent = String(seconds).padStart(2, '0');
+        }
+
+        $('year').textContent = local.year;
+        $('cairo-time').textContent = clockFormatter.format(now);
+        $('cairo-time').dateTime = now.toISOString();
+        $('birthday-timer').setAttribute('aria-label',
+          `${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds until November 11 in Cairo`);
+      }
+      updateTime();
+      setInterval(updateTime, 1000);
+
+      // Actual ambient-video controls.
+      const video = $('ambient-video');
+      const playButton = $('video-play');
+      const soundButton = $('video-sound');
+      const videoStatus = $('video-status');
+
+      function syncVideoControls() {
+        playButton.setAttribute('aria-label', video.paused ? 'Play ambient video' : 'Pause ambient video');
+        playButton.innerHTML = `<i data-lucide="${video.paused ? 'play' : 'pause'}" class="w-3.5 h-3.5"></i>`;
+        soundButton.setAttribute('aria-label', video.muted ? 'Unmute ambient video' : 'Mute ambient video');
+        soundButton.setAttribute('aria-pressed', String(!video.muted));
+        soundButton.innerHTML = `<i data-lucide="${video.muted ? 'volume-x' : 'volume-2'}" class="w-3.5 h-3.5"></i>`;
+        renderIcons();
+      }
+
+      playButton.addEventListener('click', async () => {
+        if (!video.paused) {
+          video.pause();
+          return;
+        }
+        try {
+          await video.play();
+          videoStatus.textContent = '';
+        } catch {
+          videoStatus.textContent = 'The moving postcard is unavailable. Please try again in a moment.';
+        }
+        syncVideoControls();
+      });
+      soundButton.addEventListener('click', () => {
+        video.muted = !video.muted;
+        syncVideoControls();
+      });
+      video.addEventListener('play', syncVideoControls);
+      video.addEventListener('pause', syncVideoControls);
+      video.addEventListener('volumechange', syncVideoControls);
+      video.addEventListener('error', () => {
+        videoStatus.textContent = 'A still postcard for now—the ambient video could not be loaded.';
+        syncVideoControls();
+      });
+      if (reducedMotion.matches) {
+        video.autoplay = false;
+        video.pause();
+      } else {
+        video.play().catch(() => syncVideoControls());
+      }
+      syncVideoControls();
+
+      // Real Turntable Audio Player
+      const audio = $('turntable-audio');
+      const spinButton = $('spin-toggle');
+      const spinLabel = $('spin-label');
+      const spinIcon = $('spin-icon');
+      const visualizer = $('visualizer');
+      const turntable = $('turntable');
+      const playerIndicator = $('player-indicator');
+      const playerStatus = $('player-status');
+      const nowPlayingTitle = $('now-playing-title');
+      const recordTrackName = $('record-track-name');
+      const recordTrackArtist = $('record-track-artist');
+      const audioCurrentTime = $('audio-current-time');
+      const audioDuration = $('audio-duration');
+      const progressBar = $('progress-bar');
+      const progressContainer = $('progress-container');
+      const volumeToggle = $('volume-toggle');
+      const volumeIcon = $('volume-icon');
+
+      const playlist = [
+        {
+          id: 0,
+          title: "Sa’ah Natarni",
+          artist: "Georgette Sayegh",
+          shortArtist: "Georgette S.",
+          arabic: "ساعة نطرني",
+          src: "assets/audio/saah-natarni.m4a",
+          note: "On waiting, tenderness, and the spaces in between.",
+          query: "Georgette Sayegh Sa'ah Natarni"
+        },
+        {
+          id: 1,
+          title: "Katabna W Ma Katabna",
+          artist: "Fairuz",
+          shortArtist: "Fairuz",
+          arabic: "كتبنا وما كتبنا",
+          src: "assets/audio/katabna.m4a",
+          note: "A page for the words we say—and the ones we keep.",
+          query: "Fairuz Katabna W Ma Katabna"
+        },
+        {
+          id: 2,
+          title: "Kifak Inta",
+          artist: "Fairuz",
+          shortArtist: "Fairuz",
+          arabic: "كيفك إنت",
+          src: "assets/audio/kifak-inta.m4a",
+          note: "Some questions hold an entire history.",
+          query: "Fairuz Kifak Inta"
+        },
+        {
+          id: 3,
+          title: "Ya Bouy",
+          artist: "Georgette Sayegh",
+          shortArtist: "Georgette S.",
+          arabic: "يا بوي",
+          src: "assets/audio/ya-bouy.m4a",
+          note: "A little theater, a little warmth, a voice that stays.",
+          query: "Georgette Sayegh Boya Boya"
+        }
+      ];
+
+      let currentTrackIndex = 0;
+      let isPlaying = false;
+
+      function formatTime(seconds) {
+        if (isNaN(seconds) || seconds < 0) return '0:00';
+        const mins = Math.floor(seconds / 60);
+        const secs = Math.floor(seconds % 60);
+        return `${mins}:${String(secs).padStart(2, '0')}`;
+      }
+
+      function loadTrack(index, autoPlay = false) {
+        currentTrackIndex = index;
+        const track = playlist[index];
+        audio.src = track.src;
+        if (recordTrackName) recordTrackName.textContent = track.title;
+        if (recordTrackArtist) recordTrackArtist.textContent = track.shortArtist;
+        if (nowPlayingTitle) nowPlayingTitle.textContent = `${track.title} · ${track.artist}`;
+        if ($('track-note')) $('track-note').textContent = track.note;
+        if ($('track-link')) $('track-link').href = 'https://open.spotify.com/search/' + encodeURIComponent(track.query);
+
+        document.querySelectorAll('.track').forEach((button, i) => {
+          const isCurrent = i === index;
+          button.setAttribute('aria-pressed', String(isCurrent));
+          const iconSpan = button.querySelector('.track-play-pill');
+          if (iconSpan) {
+            iconSpan.innerHTML = isCurrent && isPlaying
+              ? '<i data-lucide="volume-2" class="w-4 h-4 text-brass"></i>'
+              : '<i data-lucide="play-circle" class="w-4 h-4"></i>';
+          }
+        });
+
+        if (autoPlay) {
+          playAudio();
+        } else {
+          pauseAudioVisuals();
+        }
+        renderIcons();
+      }
+
+      function playAudio() {
+        audio.play().then(() => {
+          isPlaying = true;
+          turntable.classList.add('is-spinning');
+          visualizer.classList.add('is-moving');
+          spinButton.setAttribute('aria-pressed', 'true');
+          spinLabel.textContent = 'Pause record playback';
+          spinIcon.setAttribute('data-lucide', 'pause');
+          playerIndicator.className = 'w-2 h-2 rounded-full bg-brass animate-ping';
+          playerStatus.textContent = 'Now Playing';
+
+          document.querySelectorAll('.track').forEach((btn, i) => {
+            const iconSpan = btn.querySelector('.track-play-pill');
+            if (iconSpan) {
+              iconSpan.innerHTML = i === currentTrackIndex
+                ? '<i data-lucide="volume-2" class="w-4 h-4 text-brass"></i>'
+                : '<i data-lucide="play-circle" class="w-4 h-4"></i>';
+            }
+          });
+          renderIcons();
+        }).catch(err => {
+          console.warn('Playback error:', err);
+          pauseAudioVisuals();
+        });
+      }
+
+      function pauseAudio() {
+        audio.pause();
+        pauseAudioVisuals();
+      }
+
+      function pauseAudioVisuals() {
+        isPlaying = false;
+        turntable.classList.remove('is-spinning');
+        visualizer.classList.remove('is-moving');
+        spinButton.setAttribute('aria-pressed', 'false');
+        spinLabel.textContent = 'Play this record';
+        spinIcon.setAttribute('data-lucide', 'play');
+        playerIndicator.className = 'w-2 h-2 rounded-full bg-brass/40';
+        playerStatus.textContent = 'Paused';
+
+        document.querySelectorAll('.track').forEach((btn) => {
+          const iconSpan = btn.querySelector('.track-play-pill');
+          if (iconSpan) {
+            iconSpan.innerHTML = '<i data-lucide="play-circle" class="w-4 h-4"></i>';
+          }
+        });
+        renderIcons();
+      }
+
+      spinButton.addEventListener('click', () => {
+        if (isPlaying) {
+          pauseAudio();
+        } else {
+          playAudio();
+        }
+      });
+
+      document.querySelectorAll('.track').forEach(button => {
+        button.addEventListener('click', () => {
+          const trackIdx = Number(button.dataset.track);
+          if (trackIdx === currentTrackIndex) {
+            if (isPlaying) pauseAudio();
+            else playAudio();
+          } else {
+            loadTrack(trackIdx, true);
+          }
+        });
+      });
+
+      audio.addEventListener('timeupdate', () => {
+        if (!isNaN(audio.duration) && audio.duration > 0) {
+          const percent = (audio.currentTime / audio.duration) * 100;
+          progressBar.style.width = `${percent}%`;
+          audioCurrentTime.textContent = formatTime(audio.currentTime);
+        }
+      });
+
+      audio.addEventListener('loadedmetadata', () => {
+        audioDuration.textContent = formatTime(audio.duration);
+      });
+
+      audio.addEventListener('ended', () => {
+        const nextIdx = (currentTrackIndex + 1) % playlist.length;
+        loadTrack(nextIdx, true);
+      });
+
+      progressContainer.addEventListener('click', (e) => {
+        const rect = progressContainer.getBoundingClientRect();
+        const clickX = e.clientX - rect.left;
+        const width = rect.width;
+        if (!isNaN(audio.duration) && audio.duration > 0) {
+          audio.currentTime = (clickX / width) * audio.duration;
+        }
+      });
+
+      volumeToggle.addEventListener('click', () => {
+        audio.muted = !audio.muted;
+        volumeIcon.setAttribute('data-lucide', audio.muted ? 'volume-x' : 'volume-2');
+        renderIcons();
+      });
+
+      // Load initial track metadata
+      loadTrack(0, false);
+
+      // Native, keyboard-accessible story dialogs.
+      const stories = {
+        reading: {
+          category: 'Marginalia / 01 · A literary musing',
+          title: 'On reading slowly',
+          paragraphs: [
+            'A finished book is not always a closed one. Some remain open in the mind: a room you revisit, a sentence that changes its meaning as you change yours.',
+            'After more than forty novels and literary works, what matters to me is not the size of the ledger. It is the quiet after a page—the moment when another person’s words make your own inner life more legible.',
+            'I am drawn to timeless narratives, philosophy, and classical manuscripts because they refuse the hurry of the present. They ask for attention, not consumption. Sometimes the most generous thing a book can offer is permission to pause.'
+          ]
+        },
+        cinema: {
+          category: 'Moving images / 02 · An editor’s reflection',
+          title: 'The space between two frames',
+          paragraphs: [
+            'Editing begins with attention. Before the cut comes the question: what does this moment feel like, and how long should we be allowed to remain inside it?',
+            'I love the meeting of rhythm, color, and sound. A frame can be beautiful and still arrive too early. A silence can tell the truth more gently than a line of dialogue. The work is not simply to assemble images, but to listen to what they need.',
+            'The films I return to are the ones that leave an atmosphere behind. Not just a plot remembered, but a way of seeing: light on a wall, a face held for one second longer, a world made newly strange.'
+          ]
+        },
+        bluehour: {
+          category: 'Small rituals / 03 · A note on movement',
+          title: 'A bicycle at blue hour',
+          paragraphs: [
+            'There is a kind of thinking that only arrives when the wheels begin to turn. The body finds a rhythm; the mind loosens its grip. An evening breeze makes the familiar road feel briefly unclaimed.',
+            'I simply love riding bicycles. There is no complicated purpose—just the pure joy of movement, the cool air against the skin, and the quiet clarity of pedaling through the streets.',
+            'As for future horizons, Japan and America remain the dream travel destinations I long to visit one day. I have not been there yet, but I hold a deep fascination for Japan’s quiet zen streets and the wide, open horizons of the United States. Until those journeys happen, two wheels and the evening air are my sanctuary.'
+          ]
+        }
+      };
+
+      const dialog = $('story-dialog');
+      let storyTrigger = null;
+      document.querySelectorAll('[data-story]').forEach(button => {
+        button.addEventListener('click', () => {
+          const story = stories[button.dataset.story];
+          storyTrigger = button;
+          $('story-category').textContent = story.category;
+          $('story-title').textContent = story.title;
+          $('story-content').replaceChildren(...story.paragraphs.map(text => {
+            const paragraph = document.createElement('p');
+            paragraph.textContent = text;
+            return paragraph;
+          }));
+          dialog.showModal();
+          document.body.style.overflow = 'hidden';
+          $('close-dialog').focus();
+        });
+      });
+      $('close-dialog').addEventListener('click', () => dialog.close());
+      dialog.addEventListener('click', event => {
+        const rect = dialog.getBoundingClientRect();
+        if (event.target === dialog &&
+            (event.clientX < rect.left || event.clientX > rect.right ||
+             event.clientY < rect.top || event.clientY > rect.bottom)) {
+          dialog.close();
+        }
+      });
+      dialog.addEventListener('close', () => {
+        document.body.style.overflow = '';
+        storyTrigger?.focus();
+      });
+
+      // Preserve the composition if an authorized image is missing.
+      document.querySelectorAll('img').forEach(image => {
+        image.addEventListener('error', () => {
+          image.style.opacity = '0';
+          if (image.alt) {
+            image.parentElement.setAttribute('aria-label', image.alt + ' — image unavailable');
+          }
+        }, { once: true });
+      });
+    })();
+  </script>
+</body>
+</html>
